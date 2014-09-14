@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   root 'static_pages#root'
 
   get 'toc'=>'static_pages#toc'
@@ -6,12 +7,16 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :users
+    resources :transfers
   end
 
   resources :users do
     member do
       get 'dashboard'
     end
+  end
+
+  resources :transfers do
   end
 
   get 'sessions/new'

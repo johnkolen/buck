@@ -40,16 +40,25 @@ module EditHelper
   end
 
   def edit_field_value form, field, options={}
-    format = options[:format] || :text_field
+    format = options[:format]
+    if field == :password || field == :password_confirmation
+      format||= :password_field
+    end
+    format ||= :text_field
     errors = edit_field_errors(form.object, field)
     if  format == :submit
       form.submit(options[:label], :class=>options[:class]||'form-control')
     elsif format == :collection_select
-      form.collection_select(field, *(options[:collection]))
+      form.collection_select(field,
+                             *options[:collection],
+                             options[:options] || {},
+                             :class=>options[:class]||'form-control')
     elsif format == :select
       form.select(field,
                   options_for_select(options[:select_options],
-                                     form.object.send(field)))
+                                     form.object.send(field)),
+                  options[:options] || {},
+                  :class=>options[:class]||'form-control')
     else
       opts = {:class=>options[:class]||'form-control'}
       opts[:placeholder] = options[:placeholder]

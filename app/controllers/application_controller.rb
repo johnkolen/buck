@@ -5,9 +5,14 @@ class ApplicationController < ActionController::Base
 
   layout :select_layout
 
+  before_action :admin_page
+
+  def admin_page
+    @admin_page = request.path.index("/admin/") == 0
+  end
+
   def select_layout
     if request.path.index("/admin/") == 0
-      @admin_page = true
       "admin"
     else
       "application"

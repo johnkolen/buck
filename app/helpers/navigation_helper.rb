@@ -47,9 +47,11 @@ module NavigationHelper
 
     items << ["Site", root_path]
 
-    [Admin::User].each do |klass|
+    [Admin::User,
+     Admin::Transfer].each do |klass|
       if klass.is_a?(Class)
-        items << [klass.to_s.pluralize, polymorphic_path(klass)]
+        items << [klass.to_s.pluralize.gsub!('Admin::',''),
+                  polymorphic_path(klass)]
       else
         items << klass
       end

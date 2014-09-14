@@ -1,0 +1,26 @@
+<h1>Transfers</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Recipient</th>
+      <th>Amount</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @transfers.each do |transfer| %>
+      <tr>
+        <td><%= obj_link transfer.user %></td>
+        <td><%= obj_link transfer.recipient %></td>
+        <td><%= number_to_currency(transfer.amount) %></td>
+	<td><%= sed_buttons transfer%></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= new_button Admin::Transfer %>

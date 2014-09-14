@@ -1,0 +1,21 @@
+<% Transfer.involving(@user).order(:created_at).reverse_order.each do |transfer| %>
+  <% color = transfer.user_id == @user.id ? "bg-danger" : "bg-success" %>
+  <div class="row transfer <%= color %>">
+    <div class=clearfix>
+      <div class="pull-left">
+	<% if transfer.user_id == @user.id %>
+	  To: <%= transfer.recipient.full_name %>
+	<% else %>
+	  From: <%= transfer.user.full_name %>
+	<% end %>
+	<%= transfer.created_at.strftime "%m/%d/%y %I:%M%p"%>
+      </div>
+      <div class="pull-right">
+	<%= number_to_currency(transfer.amount) %>
+      </div>
+    </div>
+    <div>
+      <%= transfer.note %>
+    </div>
+  </div>
+<% end %>

@@ -6,6 +6,12 @@ class User < ActiveRecord::Base
   # email uniqueness
 
   has_many :credentials, :inverse_of=>:user, :dependent=>:destroy
+  has_many :transfers, :inverse_of=>:user, :dependent=>:destroy
+  has_many(:received_transfers,
+           :foreign_key=>:recipient_id,
+           :class_name=>"Transfer",
+           :inverse_of=>:recipient,
+           :dependent=>:destroy)
 
   accepts_nested_attributes_for :credentials
 
@@ -28,5 +34,13 @@ class User < ActiveRecord::Base
   def signin session
     session[:user_id] = id
     session[:is_admin] = is_admin
+  end
+
+  def full_name
+    "#{first_name} #{last_name}"
+  end
+
+  def descriptor
+    full_name
   end
 end

@@ -14,9 +14,15 @@ module ShowHelper
     end
   end
 
+  CLASS_MAPPING = {"Recipient"=>"User"}
+  def class_mapping klass
+    klass = klass.classify
+    CLASS_MAPPING[klass] || klass
+  end
+
   def show_field_value obj, field, options={}
     if /(.*)_id$/ =~ field.to_s
-      obj_link(eval($1.classify), obj.send(field))
+      obj_link(eval(class_mapping($1)), obj.send(field))
     elsif :email == field
       mail_to(obj.email, obj.email)
     elsif options[:format] == :literal

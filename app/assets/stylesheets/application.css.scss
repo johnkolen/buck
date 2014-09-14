@@ -16,3 +16,20 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+.row {
+    margin-bottom: 3%;
+}
+
+@media (max-width: 991px) {
+    h1 {
+	font-size: 800%;
+    }
+    .btn {
+	font-size: 500%;
+	height: 128px;
+    }
+    .form-control {
+	font-size: 500%;
+	height: 128px;
+    }
+}
