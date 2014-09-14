@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   validates :email, :presence=>true
   # email uniqueness
 
-  has_many :credentials, :inverse_of=>:user
+  has_many :credentials, :inverse_of=>:user, :dependent=>:destroy
 
   accepts_nested_attributes_for :credentials
 
@@ -15,5 +15,18 @@ class User < ActiveRecord::Base
 
   def credential_type_list
     credentials.map{|c| c.type_name}.join(", ").html_safe
+  end
+
+  def credentials_ok? *opts
+    if opts && opts.last.is_a?(Hash)
+      if opts.last[:password]
+        password_credential.authenticate? opts.last[:password]
+      end
+    end
+  end
+
+  def signin session
+    session[:user_id] = id
+    session[:is_admin] = is_admin
   end
 end

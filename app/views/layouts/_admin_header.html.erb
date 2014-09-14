@@ -1,0 +1,35 @@
+<header class="navbar navbar-default navbar-fixed-top">
+  <% unless Rails.env == "production" %>
+    <div class='rails-env'>
+      <em><%=Rails.env%></em>
+    </div>
+  <% end %>
+  <div class="container">
+    <ul class=" nav navbar-nav">
+      <li><%=logo :small%></li>
+    </ul>
+    <div class="admin_notice">
+      <% if flash[:notice] %>
+	<div class='notice'>
+	  <%= flash[:notice] %>
+	</div>
+      <% end %>
+    </div>
+    <ul class="nav navbar-nav navbar-right header-buttons">
+      <% if session[:user_id] %>
+	<% if @current_user %>
+	  <% personas = @current_user.personas.reverse %>
+	  <% personas.delete_if{|x| x.is_a?(Client)} %>
+	  <% personas.each do |persona| %>
+	    <% label = personas.size == 1 ? "Dashboard" : persona.class.to_s%>
+            <li class="header-elem"> <%= dashboard_button label, persona%> </li>
+	  <%  end %>
+	<%  end %>
+        <li class="header-elem"> <%= logout_button %> </li>
+      <% else %>
+        <li class="header-elem"> <%= login_button %> </li>
+      <% end %>
+    </ul>
+
+  </div>
+</header>

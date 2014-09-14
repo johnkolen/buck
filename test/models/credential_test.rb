@@ -31,4 +31,20 @@ class CredentialTest < ActiveSupport::TestCase
     assert c.new_record?
   end
 
+  test "authenticate by password" do
+    p = "my_password"
+    c = Credential.create(:user_id=>@user.id,
+                          :password=>p,
+                          :password_confirmation=>p)
+    assert c.authenticate? p
+  end
+
+  test "authenticate by password fails" do
+    p = "my_password"
+    c = Credential.create(:user_id=>@user.id,
+                          :password=>p,
+                          :password_confirmation=>p)
+    assert !c.authenticate?(p + "bad")
+  end
+
 end

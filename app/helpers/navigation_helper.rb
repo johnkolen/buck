@@ -42,5 +42,25 @@ module NavigationHelper
     common_navigation list_opts, options
   end
 
+  def admin_navigation_menu
+    items = []
+
+    items << ["Site", root_path]
+
+    [Admin::User].each do |klass|
+      if klass.is_a?(Class)
+        items << [klass.to_s.pluralize, polymorphic_path(klass)]
+      else
+        items << klass
+      end
+    end
+
+
+    content_tag :ul, :class=>"sidebar-nav" do
+      items.map { |label,path|
+        content_tag(:li,content_tag(:div,link_to(label, path)))
+      }.join.html_safe
+    end
+  end
 
 end

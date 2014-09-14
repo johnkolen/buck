@@ -1,0 +1,274 @@
+@import "scss/colors.scss";
+@import "scss/globals.scss";
+
+html, body {
+  padding: 0px;
+  margin: 0px;
+}
+
+.logo {
+    font-size: 150%;
+}
+ul.sidebar-nav {
+    margin-top: 10px;
+    margin-left: 5px;
+}
+body {
+  background-color: #fff;
+  background-color: $color-first;
+  background-image: none;
+
+  .header {
+      background-color: $color-second;
+      height: 75px;
+      padding-top: 5px;
+      padding-bottom: 15px;
+      .title {
+	  margin-left: 20px;
+	  font-weight: bold;
+	  font-size: 25px;
+      }
+  }
+  .content {
+      margin-left: 110px;
+      padding-left: 10px;
+  }
+  .clearboth {
+      clear: both;
+  }
+  .left {
+      float: left;
+  }
+  .right {
+      float: right;
+  }
+  hr {
+      border-color: $color-text;
+  }
+  table {
+      td.center {
+	  text-align: center;
+      }
+      td.number {
+	  text-align: right;
+      }
+  }
+  .click_for_profile {
+      cursor: pointer;
+  }
+  .find_listener {
+      .left_panel {
+	  width: 350px;
+	  float: left;
+      }
+      .listener_profiles {
+	  margin-left: 400px;
+	  .profile {
+	  }
+      }
+  }
+  .add_call {
+      width: 450px;
+      height: 300px;
+      position: absolute;
+      left: 100px;
+      top: 100px;
+      background-color: white;
+      overflow: hidden;
+  }
+  table.call_schedule {
+      th {
+	  text-align: center;
+      }
+      td {
+	  padding-left:10px;
+      }
+      .z0 {
+	  background-color: #dbcead;
+      }
+  }
+  .horizontal_buttons {
+      form {
+	  display: inline;
+	  div {
+	      display: inline;
+	  }
+      }
+  }
+}
+
+.horizontal_buttons {
+    margin-top: 20px;
+    form {
+	display: inline;
+	div {
+	    display: inline;
+	}
+    }
+}
+
+table.show-fields {
+    tr.show-field {
+	th.show-label {
+	    text-align:right;
+	    padding-right: 10px;
+	}
+    }
+}
+
+table.edit-fields {
+    @extend table.show-fields;
+    tr.show-field {
+	th.show-label {
+	    vertical-align: middle;
+	}
+	td.show-value {
+	    .field_with_errors input {
+		border-color: red;
+	    }
+	    #error_explanation {
+		margin: 0.5em 1em 0.5em 0;
+	    }
+	    input[type="checkbox"] {
+		width: auto;
+	    }
+	}
+    }
+}
+.person-header-tag {
+    font-size: 75%;
+    font-style: italic;
+}
+$sidebar-width: 140px;
+#wrapper {
+    padding-left: $sidebar-width;
+    transition: all 0.4s ease 0s;
+}
+
+#sidebar-wrapper {
+    margin-left: -$sidebar-width;
+    width: $sidebar-width;
+    background: $color-second;
+    height: 100%;
+    overflow-y: auto;
+    color: $text-color;
+    background-color: $color2;
+    position: fixed;
+    z-index: 1000;
+}
+#page-content-wrapper {
+    width:100%;
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+    padding-left: 10px;
+    background-color: $color-bg;
+}
+
+.sidebar-nav {
+    #position: absolute;
+    #top: 0;
+    width: $sidebar-width;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.sidebar-nav li {
+    line-height: 30px;
+}
+
+.sidebar-nav li a {
+    color: $color-text-rev;
+    display: block;
+    text-decoration: none;
+}
+
+.sidebar-nav li a:hover {
+    color: $color-text-hover-rev;
+    background: rgba(255,255,255,0.2);
+    text-decoration: none;
+}
+
+.sidebar-nav li a:active,
+.sidebar-nav li a:focus {
+    text-decoration: none;
+}
+
+.sidebar-nav > .sidebar-brand {
+    height: 65px;
+    line-height: 60px;
+    font-size: 18px;
+}
+
+.sidebar-nav > .sidebar-brand a {
+    color: $color-text-rev;
+}
+
+.sidebar-nav > .sidebar-brand a:hover {
+    color: $color-text-hover-rev;
+    background: none;
+}
+.show {
+}
+.common_navigation {
+    display: inline-block;
+}
+.admin_notice {
+    display: inline-block;
+    margin-left: 100px;
+    margin-top: 10px;
+    vertical-align: middle;
+    color: red;
+    div {
+	width: 250px;
+	margin-left: auto;
+	margin-right: auto;
+    }
+}
+.show_navigation {
+    margin-top: 2em;
+    /*position: fixed;*/
+    .container {
+	width: auto;
+    }
+    width: auto;
+}
+.show-field-introduction .show-value{
+    max-width: 40em;
+}
+.show-field {
+    vertical-align: text-top;
+    #listener_introduction {
+	width: 40em;
+	height: 10em;
+    }
+}
+
+.plus-icon:before { content: "+";}
+
+.plus-icon {
+    font-size: 150%;
+    font-weight: 900;
+}
+.page-search {
+    margin-bottom: 1em;
+}
+.btn-inline {
+    form {
+	display: inline;
+	div {
+	    display: inline;
+	}
+    }
+}
+table.with-buttons {
+    tbody>tr>td {
+	vertical-align: middle;
+    }
+}
+.pagination {
+    margin-top: 0.5em;
+}
+.edit {
+    input[type="submit"] { width: auto }
+}

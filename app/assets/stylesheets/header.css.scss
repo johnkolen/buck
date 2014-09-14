@@ -1,0 +1,82 @@
+@import "scss/globals.scss";
+
+body {
+    padding-top: $header-height;
+}
+
+header.navbar-default,
+header.navbar {
+    background-color: $color-bg;
+    border-bottom: 5px solid $color1;
+    a.navbar-brand {
+	font-size: 100%;
+    }
+    .navbar-brand {
+	a {
+	    color: $text-color;
+	}
+	a:hover, a:focus, a:active {
+	    color: $text-hover-color;
+	    text-decoration: none;
+	}
+    }
+    .navbar-nav > li > a {
+	color: $text-color;
+    }
+    .navbar-nav > .active > a,
+    .navbar-nav > .active > a:hover,
+    .navbar-nav > .active > a:focus {
+	color: $button-color;
+	background-color: $bg-color;
+    }
+    .navbar-toggle {margin-right: 30px;}
+    .navbar-collapse {
+	background-color: $bg-color;
+	border-color: $color1;
+	border-bottom: 5px solid $color1;
+    }
+    .left-nav > li > a {
+	text-transform: uppercase;
+	margin-top: 0.8em;
+    }
+    border-top: 0;
+    box-shadow: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    margin-bottom:0px;
+    .container {
+	height: $header-height - 5;
+	padding-top: 5px;
+	width: auto;
+	max-width: 960px;
+    }
+    .user-name {text-transform: none;}
+    ul.header-buttons > li.header-elem > a.header-button {
+	background-color: $button-color;
+	color: $button-text-color;
+	padding: 10px 20px;
+	margin-left: 10px;
+    }
+    ul.header-buttons {
+	li > a.signup-link {
+	    text-align: center;
+	    max-width: 6em;
+	    margin-top: 0.0em;
+	}
+	li.header-elem > a.header-button:hover {
+	    background-color: $button-hover-color;
+	}
+    }
+    .rails-env {
+	position: absolute;
+	color: red;
+    }
+    .header-phone {
+	img {
+	    height: 16px;
+	    width: 16px;
+	}
+    }
+}
+

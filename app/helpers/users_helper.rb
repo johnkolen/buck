@@ -4,14 +4,22 @@ module UsersHelper
   end
 
   def user_edit_fields form
-    edit_field form, [:first_name, :last_name, :email]
+    if @admin_page
+      edit_field form, [:first_name, :last_name, :email]
+    else
+      edit_field_simple form, [:first_name, :last_name, :email]
+    end
   end
 
   def password_credential_edit_fields form
     user = form.object
     credential = user.password_credential || user.credentials.build
     form.fields_for :credentials, credential do |cf|
-      edit_field cf, [:password, :password_confirmation]
+      if @admin_page
+        edit_field cf, [:password, :password_confirmation]
+      else
+        edit_field_simple cf, [:password, :password_confirmation]
+      end
     end
   end
 

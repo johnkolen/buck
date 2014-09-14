@@ -1,0 +1,15 @@
+<div class=show>
+  <div class=row>
+    <div class="col-sm-3">
+      <div><%=show_avatar @user%></div>
+    </div>
+    <div  class="col-sm-8">
+      <%= show_fields @user do %>
+        <%= user_fields @user %>
+	<%= show_field @user, :credentials, @user.credential_type_list%>
+      <% end %>
+      <%= show_navigation @user %>
+    </div>
+  </div>
+</div>
+

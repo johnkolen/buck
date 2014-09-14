@@ -21,6 +21,10 @@ class Credential < ActiveRecord::Base
     end
   end
 
+  def authenticate? pwd
+    encrypted_password == BCrypt::Engine.hash_secret(pwd, salt)
+  end
+
   def type_name
     if encrypted_password
       "password"

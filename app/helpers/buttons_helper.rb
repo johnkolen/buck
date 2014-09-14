@@ -1,4 +1,5 @@
 module ButtonsHelper
+
   BUTTON_CLASS = "btn btn-md btn-info"
   def login_button
     link_to("Log In",
@@ -45,8 +46,9 @@ module ButtonsHelper
     h.merge!(opts.last) if opts && opts.last.is_a?(Hash)
     if h.empty?
       content_tag :span, :class=>" btn-inline" do
-        button_to "Show", polymorphic_path(target), :method=>:get, :class=>"btn 
-btn-info"
+        button_to("Show",
+                  polymorphic_path(target),
+                  :method=>:get, :class=>"btn btn-info")
       end
     else
       link_to "Show", polymorphic_path(target, h), :method=>:get
@@ -54,8 +56,10 @@ btn-info"
   end
   def edit_button target
     content_tag :span, :class=>" btn-inline" do
-      button_to "Edit", edit_polymorphic_path(target), :method=>:get, :class=>"b
-tn btn-info"
+      button_to("Edit",
+                edit_polymorphic_path(target),
+                :method=>:get,
+                :class=>"btn btn-info")
     end
   end
 
@@ -76,4 +80,24 @@ tn btn-info"
       destroy_button(obj)
   end
 
+  def signup_button
+    button_to("Signup",
+              new_user_path,
+              :method=>:get,
+              :class=>"form-control btn btn-info")
+  end
+
+  def login_button
+    button_to("Log In",
+              sessions_new_path,
+              :method=>:get,
+              :class=>"form-control btn btn-info")
+  end
+
+  def logout_button
+    link_to("Log Out",
+            sessions_destroy_path,
+            :method => :delete,
+            :class=>"form-control btn btn-info")
+  end
 end
