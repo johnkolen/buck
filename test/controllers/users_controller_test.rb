@@ -2,7 +2,7 @@ require 'test_helper'
 
 class UsersControllerTest < ActionController::TestCase
   setup do
-    @user = users(:one)
+    @user = users(:alan)
   end
 
   test "should get index" do
@@ -22,6 +22,22 @@ class UsersControllerTest < ActionController::TestCase
     end
 
     assert_redirected_to user_path(assigns(:user))
+  end
+
+  test "should create user with password" do
+    p = "my_password"
+    assert_difference('User.count') do
+      h = {user: { email: @user.email,
+          first_name: @user.first_name,
+          last_name: @user.last_name,
+        credentials_attributes: {"0"=>{password: p, password_confirmation: p}}}}
+      post :create, h
+    end
+
+    assert_redirected_to user_path(assigns(:user))
+    assert_equal 1, assigns(:user).credentials.count
+    assert(!assigns(:user).credentials.first.encrypted_password.blank?,
+           "missing encrypted password")
   end
 
   test "should show user" do

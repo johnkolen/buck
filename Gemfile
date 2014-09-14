@@ -50,3 +50,6 @@ gem 'quiet_assets', group: :development
 # Use Bootstrap 3
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
+
+# Use encryption
+gem 'bcrypt'

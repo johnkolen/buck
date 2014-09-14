@@ -6,6 +6,7 @@
     <div  class="col-sm-8">
       <%= show_fields @user do %>
         <%= user_fields @user %>
+	<%= show_field @user, :credentials, @user.credential_type_list%>
       <% end %>
       <%= show_navigation @user %>
     </div>
