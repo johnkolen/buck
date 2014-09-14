@@ -43,3 +43,6 @@ gem 'rails_12factor', group: [:production]
 
 # Store sessions in database
 gem 'activerecord-session_store', github: 'rails/activerecord-session_store'
+
+# Quiet asset loading
+gem 'quiet_assets', group: :development
