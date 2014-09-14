@@ -40,3 +40,6 @@ gem 'spring',        group: :development
 
 # Allow Heroku to serve static assets
 gem 'rails_12factor', group: [:production]
+
+# Store sessions in database
+gem 'activerecord-session_store', github: 'rails/activerecord-session_store'
