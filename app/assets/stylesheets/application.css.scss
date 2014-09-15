@@ -15,6 +15,18 @@
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "scss/colors";
+
+#error_explanation {
+    background-color: $color-bg;
+    border-color: $color-bg;
+    color: $color-error;
+    width: auto;
+}
+.field_with_errors {
+  display: block;
+  border-radius: 4px;
+}
 
 .row {
     margin-bottom: 3%;
