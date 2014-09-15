@@ -1,8 +1,12 @@
 module TransfersHelper
-  def transfer_fields user
-    out = show_field user, [:user_id, :recipient_id]
-    out << show_field(user, :amount, number_to_currency(user.amount))
-    out << show_field(user, :note)
+  def transfer_fields transfer
+    user = transfer.user
+    out = show_field transfer, [:user_id, :recipient_id]
+    out << show_field(transfer, :amount, number_to_currency(transfer.amount))
+    out << show_field(transfer,
+                      :created_at,
+                      transfer.created_at_tz)
+    out << show_field(transfer, :note)
   end
 
   def transfer_edit_fields form

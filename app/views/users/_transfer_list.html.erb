@@ -8,7 +8,7 @@
 	<% else %>
 	  From: <%= transfer.user.full_name %>
 	<% end %>
-	<%= transfer.created_at.strftime "%m/%d/%y %I:%M%p"%>
+	<%= transfer.created_at_tz.strftime "%m/%d/%y %I:%M%p"%>
       </div>
       <div class="pull-right">
 	<%= number_to_currency(transfer.amount) %>

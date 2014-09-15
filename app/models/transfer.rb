@@ -10,6 +10,14 @@ class Transfer < ActiveRecord::Base
   scope(:involving,
         ->(user){ where("user_id = ? OR recipient_id = ?", user.id, user.id) })
 
+  def created_at_tz
+    if created_at
+      created_at.in_time_zone(user.time_zone)
+    else
+      nil
+    end
+  end
+
   def amount
     amount_cents / 100.0 if amount_cents
   end

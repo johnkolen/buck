@@ -1,13 +1,22 @@
 module UsersHelper
   def user_fields user
-    show_field user, [:first_name, :last_name, :email, :created_at]
+    show_field user, [:first_name, :last_name, :email, :time_zone, :created_at]
   end
 
   def user_edit_fields form
+    time_zones = ActiveSupport::TimeZone.us_zones.map{|x| x.name}
     if @admin_page
-      edit_field form, [:first_name, :last_name, :email]
+      out = edit_field form, [:first_name, :last_name, :email]
+      out << edit_field(form,
+                        :time_zone,
+                        :format=>:select,
+                        :select_options=>time_zones)
     else
-      edit_field_simple form, [:first_name, :last_name, :email]
+      out = edit_field_simple form, [:first_name, :last_name, :email]
+      out << edit_field_simple(form,
+                        :time_zone,
+                        :format=>:select,
+                        :select_options=>time_zones)
     end
   end
 
