@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   validates :first_name, :presence=>true
   validates :last_name, :presence=>true
   validates :email, :presence=>true
+  validates :credentials, :presence=>true
   # email uniqueness
 
   has_many :credentials, :inverse_of=>:user, :dependent=>:destroy

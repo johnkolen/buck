@@ -2,7 +2,7 @@ require 'test_helper'
 
 class TransfersControllerTest < ActionController::TestCase
   setup do
-    @transfer = transfers(:one)
+    @transfer = transfers(:alan2bob)
   end
 
   test "should get index" do
@@ -18,10 +18,10 @@ class TransfersControllerTest < ActionController::TestCase
 
   test "should create transfer" do
     assert_difference('Transfer.count') do
-      post :create, transfer: { amount_cents: @transfer.amount_cents, note: @transfer.note, recipient_id: @transfer.recipient_id, user_id: @transfer.user_id }
+      post :create, transfer: { amount: @transfer.amount_cents/100.0, note: @transfer.note, recipient_id: @transfer.recipient_id, user_id: @transfer.user_id }
     end
 
-    assert_redirected_to transfer_path(assigns(:transfer))
+    assert_redirected_to dashboard_user_path(assigns(:transfer).user)
   end
 
   test "should show transfer" do

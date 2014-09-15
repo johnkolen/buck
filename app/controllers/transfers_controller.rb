@@ -27,13 +27,13 @@ class TransfersController < ApplicationController
     @transfer = Transfer.new(transfer_params)
 
     respond_to do |format|
-      if @transfer.save
+      if @transfer.save!
         notice = "Money sent to #{@transfer.recipient.first_name}"
         format.html { redirect_to(dashboard_user_path(@transfer.user),
                                   :notice=>notice)}
         format.json { render :show, status: :created, location: @transfer }
       else
-        format.html { redirect_to dashboard_user_path(@transfer.user), notice: 'Failed' }
+        format.html { redirect_to dashboard_user_path(@transfer.user_id), notice: 'Failed' }
         format.json { render json: @transfer.errors, status: :unprocessable_entity }
       end
     end

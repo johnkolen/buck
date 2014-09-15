@@ -18,7 +18,8 @@ class Admin::UsersControllerTest < ActionController::TestCase
 
   test "should create user" do
     assert_difference('User.count') do
-      post :create, user: { email: @user.email, first_name: @user.first_name, last_name: @user.last_name }
+      p = "a_password!"
+      post :create, admin_user: { email: 'x'+@user.email, first_name: @user.first_name, last_name: @user.last_name, :credentials_attributes=>{"0"=>{:password=>p,:password_confirmation=>p }}}
     end
 
     assert_redirected_to admin_user_path(assigns(:user))
@@ -27,7 +28,7 @@ class Admin::UsersControllerTest < ActionController::TestCase
   test "should create user with password" do
     p = "my_password"
     assert_difference('User.count') do
-      h = {user: { email: @user.email,
+      h = {admin_user: { email: @user.email,
           first_name: @user.first_name,
           last_name: @user.last_name,
         credentials_attributes: {"0"=>{password: p, password_confirmation: p}}}}
@@ -51,7 +52,7 @@ class Admin::UsersControllerTest < ActionController::TestCase
   end
 
   test "should update user" do
-    patch :update, id: @user, user: { email: @user.email, first_name: @user.first_name, last_name: @user.last_name }
+    patch :update, id: @user, admin_user: { email: @user.email, first_name: @user.first_name, last_name: @user.last_name }
     assert_redirected_to admin_user_path(assigns(:user))
   end
 

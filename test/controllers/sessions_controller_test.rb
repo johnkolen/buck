@@ -6,14 +6,17 @@ class SessionsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should get create" do
-    get :create
-    assert_response :success
+  test "should create session" do
+    alan = users(:alan)
+    post :create, :email=>alan.email, :password=>'alan123'
+    assert_redirected_to dashboard_user_path(alan)
+    assert_equal alan.id, session[:user_id]
   end
 
-  test "should get delete" do
-    get :delete
-    assert_response :success
+  test "should delete destroy" do
+    delete :destroy
+    assert_redirected_to root_path
+    assert !session[:user_id]
   end
 
 end

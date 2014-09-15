@@ -16,12 +16,13 @@ class UsersControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should create user" do
-    assert_difference('User.count') do
+  test "should not create user missing password" do
+    assert_no_difference('User.count') do
       post :create, user: { email: @user.email, first_name: @user.first_name, last_name: @user.last_name }
     end
 
-    assert_redirected_to user_path(assigns(:user))
+    # try entering it again
+    assert_response :success
   end
 
   test "should create user with password" do
@@ -34,7 +35,7 @@ class UsersControllerTest < ActionController::TestCase
       post :create, h
     end
 
-    assert_redirected_to user_path(assigns(:user))
+    assert_redirected_to dashboard_user_path(assigns(:user))
     assert_equal 1, assigns(:user).credentials.count
     assert(!assigns(:user).credentials.first.encrypted_password.blank?,
            "missing encrypted password")

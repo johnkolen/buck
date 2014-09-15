@@ -1,13 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  user_id: 1
-  recipient_id: 1
-  amount_cents: 1
-  note: MyText
+alan2bob:
+  user: alan
+  recipient: bob
+  amount_cents: 100
+  note: alan2bob
 
-two:
-  user_id: 1
-  recipient_id: 1
-  amount_cents: 1
-  note: MyText
+bob2alan:
+  user: bob
+  recipient: alan
+  amount_cents: 200
+  note: bob2alan
