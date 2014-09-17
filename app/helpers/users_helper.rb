@@ -1,6 +1,8 @@
 module UsersHelper
   def user_fields user
-    show_field user, [:first_name, :last_name, :email, :time_zone, :created_at]
+    out = show_field user, [:first_name, :last_name, :email]
+    out << show_field(user, :is_admin) if @admin_page
+    out << show_field( user, [:time_zone, :created_at])
   end
 
   def user_edit_fields form
@@ -11,6 +13,7 @@ module UsersHelper
                         :time_zone,
                         :format=>:select,
                         :select_options=>time_zones)
+      out << edit_field(form, :is_admin, :format=>:check_box)
     else
       out = edit_field_simple form, [:first_name, :last_name, :email]
       out << edit_field_simple(form,

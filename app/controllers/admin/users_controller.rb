@@ -74,6 +74,7 @@ class Admin::UsersController < ApplicationController
                :last_name,
                :email,
                :time_zone,
+               :is_admin,
                :credentials_attributes=>[:password, :password_confirmation])
     end
 end
