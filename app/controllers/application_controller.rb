@@ -8,11 +8,13 @@ class ApplicationController < ActionController::Base
   before_action :admin_page
 
   def admin_page
-    @admin_page = request.path.index("/admin/") == 0
+    @admin_page = request.path.index("/admin") == 0
+    redirect_to root_path if @admin_page && !session[:is_admin]
+    true
   end
 
   def select_layout
-    if request.path.index("/admin/") == 0
+    if @admin_page
       "admin"
     else
       "application"

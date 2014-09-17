@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   get 'toc'=>'static_pages#toc'
   get 'about'=>'static_pages#about'
+  get 'admin'=>'static_pages#admin'
 
   namespace :admin do
     resources :users

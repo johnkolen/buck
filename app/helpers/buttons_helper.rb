@@ -100,4 +100,10 @@ module ButtonsHelper
             :method => :delete,
             :class=>"form-control btn btn-info")
   end
+
+  def admin_button
+    link_to("Admin",
+            admin_path,
+            :class=>"form-control btn btn-info")
+  end
 end
