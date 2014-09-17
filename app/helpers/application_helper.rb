@@ -4,7 +4,8 @@ module ApplicationHelper
   end
 
   def logo size
-    content_tag(:div, app_name, :class=>size)
+    img = image_tag("logo_x-large.png", :class=>"img-responsive", :alt=>app_name)
+    content_tag(:div, img, :class=>"logo-#{size}")
   end
 
   def obj_link klass_or_obj, id=nil

@@ -101,9 +101,16 @@ module ButtonsHelper
             :class=>"form-control btn btn-info")
   end
 
-  def admin_button
+  def header_logout_link
+    link_to("Log Out",
+            sessions_destroy_path,
+            :method => :delete,
+            :class=>"")
+  end
+
+  def admin_link
     link_to("Admin",
             admin_path,
-            :class=>"form-control btn btn-info")
+            :class=>"")
   end
 end

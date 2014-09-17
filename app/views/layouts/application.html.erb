@@ -8,8 +8,8 @@
 </head>
 <body>
   <header>
+    <%= render :partial=>'layouts/header' if session[:user_id] %>
   </header>
-
   <%= yield %>
 
   <footer>

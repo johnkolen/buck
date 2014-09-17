@@ -32,6 +32,25 @@
     margin-bottom: 3%;
 }
 
+.btn-info,.btn-info:visited {
+    background-color: $color-btn-info;
+    border-color: $color-btn-info;
+    color: $color-button-text
+}
+.btn-info:active,.btn-info:hover {
+    background-color: $color-btn-info-active;
+    border-color: $color-btn-info-active;
+    color: $color-button-text
+}
+.logo-small {
+    width: 100px;
+}
+.navbar-brand {
+    .logo-small {
+    margin-top: -20px;
+    }
+}
+
 @media (max-width: 991px) {
     h1 {
 	font-size: 800%;

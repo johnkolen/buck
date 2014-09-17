@@ -12,13 +12,5 @@
     <div class=row>
       <%= render :partial=>"transfer_list"%>
     </div>
-    <div class=row>
-      <%= logout_button %>
-    </div>
-    <% if @user.is_admin? %>
-      <div class=row>
-	<%= admin_button %>
-      </div>
-    <% end %>
   </div>
 </div>
