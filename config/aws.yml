@@ -14,5 +14,4 @@ development: *john
 
 test: *john
 
-production: *john
 
