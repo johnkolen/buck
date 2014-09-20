@@ -2,20 +2,28 @@
   <% color = transfer.user_id == @user.id ? "bg-danger" : "bg-success" %>
   <div class="row transfer <%= color %>">
     <div class=clearfix>
-      <div class="pull-left">
-	<% if transfer.user_id == @user.id %>
-	  To: <%= transfer.recipient.full_name %>
-	<% else %>
-	  From: <%= transfer.user.full_name %>
-	<% end %>
-	<%= transfer.created_at_tz.strftime "%m/%d/%y %I:%M%p"%>
+      <div class="pull-left avatar">
+	<% other = transfer.other_user(@user) %>
+	<%= link_to show_avatar(other, :thumb), other %>
       </div>
-      <div class="pull-right">
-	<%= number_to_currency(transfer.amount) %>
+      <div>
+	<div class="pull-left">
+	  <div>
+	    <% if transfer.user_id == @user.id %>
+	      To: <%= transfer.recipient.full_name %>
+	    <% else %>
+	      From: <%= transfer.user.full_name %>
+	    <% end %>
+	    <%= transfer.created_at_tz.strftime "%m/%d/%y %I:%M%p"%>
+	  </div>
+	  <div>
+	    <%= transfer.note %>
+	  </div>
+	</div>
+	<div class="pull-right">
+	  <%= number_to_currency(transfer.amount) %>
+	</div>
       </div>
-    </div>
-    <div>
-      <%= transfer.note %>
     </div>
   </div>
 <% end %>

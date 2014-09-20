@@ -53,3 +53,8 @@ gem 'autoprefixer-rails'
 
 # Use encryption
 gem 'bcrypt'
+
+# Avatars, images, and other attachements
+gem "paperclip", "~> 4.2"
+# Save attachments in S3
+gem "aws-sdk"

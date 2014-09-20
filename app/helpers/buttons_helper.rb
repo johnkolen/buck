@@ -113,4 +113,8 @@ module ButtonsHelper
             admin_path,
             :class=>"")
   end
+
+  def edit_profile_button user
+    link_to("Edit Profile", edit_user_path(user), :class=>BUTTON_CLASS)
+  end
 end

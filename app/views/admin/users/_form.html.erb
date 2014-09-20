@@ -1,4 +1,4 @@
-<%= form_for(@user) do |form| %>
+<%= form_for @user, :html=>{:multipart=>true} do |form| %>
   <%= edit_fields form do %>
     <%=user_edit_fields form %>
   <% end %>

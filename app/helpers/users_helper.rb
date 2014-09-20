@@ -14,12 +14,25 @@ module UsersHelper
                         :format=>:select,
                         :select_options=>time_zones)
       out << edit_field(form, :is_admin, :format=>:check_box)
+      avatar_label =
+        params[:action] == "edit" ? "Update Picture" : "Upload Picture"
+      out << edit_field(form,
+                        :avatar,
+                        :placeholder=>avatar_label,
+                        :format=>:file_field)
     else
       out = edit_field_simple form, [:first_name, :last_name, :email]
       out << edit_field_simple(form,
                         :time_zone,
                         :format=>:select,
                         :select_options=>time_zones)
+      avatar_label =
+        params[:action] == "edit" ?
+        "Update Your Picture" : "Upload Your Picture"
+      out << edit_field_simple(form,
+                        :avatar,
+                        :placeholder=>avatar_label,
+                        :format=>:file_field)
     end
   end
 
@@ -35,7 +48,9 @@ module UsersHelper
     end
   end
 
-  def show_avatar user, size=nil
-    image_tag "generic_avatar.png"
+  def show_avatar user, size=:medium, *opts
+    options = {}
+    options.merge! opts.last if opts && opts.last && opts.last.is_a?(Hash)
+    image_tag user.avatar.url(size), options
   end
 end

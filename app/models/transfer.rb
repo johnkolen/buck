@@ -29,4 +29,12 @@ class Transfer < ActiveRecord::Base
       self.amount_cents = nil
     end
   end
+
+  def other_user u
+    if user_id == u.id
+      self.recipient
+    else
+      self.user
+    end
+  end
 end

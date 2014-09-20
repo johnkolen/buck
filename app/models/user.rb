@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
            :inverse_of=>:recipient,
            :dependent=>:destroy)
 
+  # Credentials
   accepts_nested_attributes_for :credentials
 
   def password_credential
@@ -37,8 +38,21 @@ class User < ActiveRecord::Base
     session[:is_admin] = is_admin
   end
 
+  # Avatar
+  has_attached_file(:avatar,
+                    :styles=>{:medium=>"200x200>", :thumb=>"80x80>"},
+                    :path=>"/users/avatars/:id_:basename.:style.:extension",
+                    :default_url=>":style/missing-avatar.png")
+  validates_attachment_content_type :avatar, :content_type=>/\Aimage\/.*\Z/
+
+  # Helpers
   def full_name
     "#{first_name} #{last_name}"
+  end
+
+  def membership_time_str
+    td = Time.now - created_at
+    ActionController::Base.helpers.distance_of_time_in_words td
   end
 
   def descriptor

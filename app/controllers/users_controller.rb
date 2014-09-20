@@ -78,6 +78,7 @@ class UsersController < ApplicationController
                :last_name,
                :email,
                :time_zone,
+               :avatar,
                :credentials_attributes=>[:password, :password_confirmation])
     end
 end

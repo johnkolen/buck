@@ -59,6 +59,9 @@ module EditHelper
                                      form.object.send(field)),
                   options[:options] || {},
                   :class=>options[:class]||'form-control')
+    elsif format == :file_field
+      opts = {:class=>options[:class]||'form-control'}
+      edit_file_field form, field, options[:placeholder] || "Upload", opts
     else
       opts = {:class=>options[:class]||'form-control'}
       opts[:placeholder] = options[:placeholder]
@@ -66,6 +69,13 @@ module EditHelper
                 field,
                 opts)+errors
     end
+  end
+
+  def edit_file_field form, field, label, options
+    content = content_tag(:span,label.html_safe,:class=>"msg") +
+      form.file_field(field, options) +
+      content_tag(:span, '', :class=>'filename')
+    content_tag :span, content, :class=>"btn btn-default btn-file form-control"
   end
 
   def edit_field form, field, *opts

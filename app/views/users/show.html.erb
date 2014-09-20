@@ -1,15 +1,27 @@
-<div class=show>
-  <div class=row>
-    <div class="col-sm-3">
-      <div><%=show_avatar @user%></div>
-    </div>
-    <div  class="col-sm-8">
-      <%= show_fields @user do %>
-        <%= user_fields @user %>
-	<%= show_field @user, :credentials, @user.credential_type_list%>
-      <% end %>
-      <%= show_navigation @user %>
+<div class=row>
+  <div class="col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4">
+    <div class=show>
+      <div class=row>
+	<div class="col-sm-6">
+	  <div><%=show_avatar @user, :medium, :class=>"img-responsive"%></div>
+	</div>
+	<div  class="col-sm-6">
+	  <div class=row>
+	    <%= @user.full_name%>
+	  </div>
+	  <div class=row>
+	    Member for <%=@user.membership_time_str%>
+	  </div>
+	  <% if @user.id == session[:user_id] %>
+	    <div class=row>
+	      <%= edit_profile_button @user %>
+	    </div>
+	  <% end %>
+	</div>
+      </div>
+      <div class=row>
+	<%= render :partial=>"transfer_list"%>
+      </div>
     </div>
   </div>
 </div>
-
