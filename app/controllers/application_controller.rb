@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   layout :select_layout
 
   before_action :admin_page
+  before_action :find_current_user
 
   def admin_page
     @admin_page = request.path.index("/admin") == 0
@@ -19,5 +20,9 @@ class ApplicationController < ActionController::Base
     else
       "application"
     end
+  end
+
+  def find_current_user
+    @current_user = User.find(session[:user_id]) if session[:user_id]
   end
 end

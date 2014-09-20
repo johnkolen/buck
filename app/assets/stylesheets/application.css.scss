@@ -31,7 +31,11 @@
 .row {
     margin-bottom: 3%;
 }
-
+header {
+    .row {
+	margin-bottom: 0px;
+    }
+}
 .btn-info,.btn-info:visited {
     background-color: $color-btn-info;
     border-color: $color-btn-info;
@@ -51,6 +55,9 @@
     }
 }
 
+h1 {
+    text-align: center;
+}
 @media (max-width: 991px) {
     h1 {
 	font-size: 800%;
