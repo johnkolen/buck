@@ -40,6 +40,7 @@ Rails.application.configure do
   # Paperclip S3 configuration
   config.paperclip_defaults = {
     :storage => :s3,
+    :url=>":s3_domain_url",
     :s3_credentials => {
       :bucket=>'buck-test'
     }
