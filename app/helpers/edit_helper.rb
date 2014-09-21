@@ -46,20 +46,23 @@ module EditHelper
     end
     format ||= :text_field
     errors = edit_field_errors(form.object, field)
-    if  format == :submit
+    case format
+    when :submit
       form.submit(options[:label], :class=>options[:class]||'form-control')
-    elsif format == :collection_select
+    when :none
+      ''.html_safe
+    when:collection_select
       form.collection_select(field,
                              *options[:collection],
                              options[:options] || {},
                              :class=>options[:class]||'form-control')
-    elsif format == :select
+    when :select
       form.select(field,
                   options_for_select(options[:select_options],
                                      form.object.send(field)),
                   options[:options] || {},
                   :class=>options[:class]||'form-control')
-    elsif format == :file_field
+    when :file_field
       opts = {:class=>options[:class]||'form-control'}
       edit_file_field form, field, options[:placeholder] || "Upload", opts
     else

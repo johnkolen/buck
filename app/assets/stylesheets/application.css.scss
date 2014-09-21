@@ -36,7 +36,7 @@ header {
 	margin-bottom: 0px;
     }
 }
-.btn-info,.btn-info:visited {
+.btn-info,.btn-info:visited,.btn-info:focus {
     background-color: $color-btn-info;
     border-color: $color-btn-info;
     color: $color-button-text

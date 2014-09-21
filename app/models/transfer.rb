@@ -6,6 +6,7 @@ class Transfer < ActiveRecord::Base
 
   belongs_to :user, :inverse_of=>:transfers
   belongs_to :recipient, :class_name=>"User", :inverse_of=>:received_transfers
+  has_many :comments
 
   scope(:involving,
         ->(user){ where("user_id = ? OR recipient_id = ?", user.id, user.id) })

@@ -1,0 +1,9 @@
+modal = $("#comment_modal")
+modal.find("#comment_note").val("<%=escape_javascript @comment.note%>")
+modal.find('input[type="submit"]').val("Save")
+modal.find('.modal-title').html("Edit Comment")
+form = modal.find('form')
+form.attr('action', "/comments/<%=@comment.id%>")
+form.attr('method', "put")
+form.find("#comment_transfer_id").val(<%=@comment.transfer_id%>)
+modal.modal("show");

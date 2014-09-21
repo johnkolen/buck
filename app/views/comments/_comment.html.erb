@@ -1,0 +1,13 @@
+<div class=comment id="comment_<%=comment.id%>">
+  <% if comment.user_id == session[:user_id] %>
+    <div class="controls push-right">
+      <%= edit_comment_button comment %>
+    </div>
+  <% end %>
+  <div>
+    <%= comment.user.full_name %> says:
+  </div>
+  <div>
+    <%= comment.note %>
+  </div>
+</div>

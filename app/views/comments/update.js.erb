@@ -1,0 +1,7 @@
+<% comment =
+    render :partial=>"comment",:locals=>{:comment=>@comment} %>
+content = $("<%=escape_javascript(comment)%>")
+
+id = content.attr("id");
+$("#"+id).replaceWith(content);
+$("#comment_modal").modal("hide");

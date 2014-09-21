@@ -125,4 +125,17 @@ module ButtonsHelper
               :remote=>true)
 
   end
+
+  def glyph label
+    content_tag(:span,'',:class=>"glyphicon glyphicon-#{label}")
+  end
+
+  def edit_comment_button comment
+    button_to(edit_comment_path(comment),
+              :class=>"close",
+              :method=>"get",
+              :remote=>true) do
+      glyph(:pencil)
+    end
+  end
 end

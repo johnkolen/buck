@@ -1,0 +1,38 @@
+<% color = transfer.user_id == session[:user_id] ? "bg-danger" : "bg-success" %>
+<div class="row transfer <%= color %>" id="transfer_<%=transfer.id%>">
+  <div class=clearfix>
+    <div class="pull-left avatar">
+      <% other = transfer.other_user(@current_user) %>
+      <%= link_to show_avatar(other, :thumb), other %>
+    </div>
+    <div class="content">
+      <div>
+	<div>
+	  <div class="pull-right">
+	    <%= number_to_currency(transfer.amount) %>
+	    <% if params[:action] == 'dashboard' %>
+	      <div>
+		<%= dashboard_close_button transfer %>
+	      </div>
+	    <% end %>
+	  </div>
+	  <div>
+	    <% if transfer.user_id == session[:user_id] %>
+	      To: <%= transfer.recipient.full_name %>
+	    <% else %>
+	      From: <%= transfer.user.full_name %>
+	    <% end %>
+	  </div>
+	  <div>
+	    <%= transfer.created_at_tz.strftime "%m/%d/%y %I:%M%p"%>
+	  </div>
+	  <div>
+	    <%= transfer.note %>
+	  </div>
+	</div>
+      </div>
+      <%= render(:partial=>"comments/list",
+		 :locals=>{:comments=>transfer.comments})%>
+    </div>
+  </div>
+</div>

@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :comments
+
   root 'static_pages#root'
 
   get 'toc'=>'static_pages#toc'

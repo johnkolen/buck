@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
            :class_name=>"Transfer",
            :inverse_of=>:recipient,
            :dependent=>:destroy)
+  has_many :comments
 
   # Credentials
   accepts_nested_attributes_for :credentials

@@ -1,0 +1,10 @@
+<%= form_for @comment||Comment.new, :html=>{:multipart=>true}, :remote=>true do |form| %>
+<div class="modal-body">
+  <%=comment_edit_fields form %>
+  <%= form.hidden_field :transfer_id %>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+  <%=form.submit "Create", :class=>"btn button-default btn-info"%>
+</div>
+<% end %>

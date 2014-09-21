@@ -1,0 +1,6 @@
+<%= form_for@comment, :html=>{:multipart=>true} do |form| %>
+  <%= edit_fields form do %>
+    <%=comment_edit_fields form %>
+  <% end %>
+<% end %>
+
