@@ -6,4 +6,12 @@
     .avatar {
 	margin-right: 10px;
     }
+    .close:hover {
+	color: red;
+    }
+    .close {
+	color: red;
+	border-width: 0;
+	background-color: transparent;
+    }
 }

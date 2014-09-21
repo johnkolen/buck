@@ -1,6 +1,8 @@
-<% Transfer.involving(@user).order(:created_at).reverse_order.each do |transfer| %>
+<% q = Transfer.involving(@user) %>
+<% q = q.where(:on_dashboard=>true) if params[:action] == 'dashboard' %>
+<% q.order(:created_at).reverse_order.each do |transfer| %>
   <% color = transfer.user_id == @user.id ? "bg-danger" : "bg-success" %>
-  <div class="row transfer <%= color %>">
+  <div class="row transfer <%= color %>" id="transfer_<%=transfer.id%>">
     <div class=clearfix>
       <div class="pull-left avatar">
 	<% other = transfer.other_user(@user) %>
@@ -24,6 +26,11 @@
 	</div>
 	<div class="pull-right">
 	  <%= number_to_currency(transfer.amount) %>
+	  <% if params[:action] == 'dashboard' %>
+	    <div>
+	      <%= dashboard_close_button transfer %>
+	    </div>
+	  <% end %>
 	</div>
       </div>
     </div>

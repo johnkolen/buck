@@ -117,4 +117,12 @@ module ButtonsHelper
   def edit_profile_button user
     link_to("Edit Profile", edit_user_path(user), :class=>BUTTON_CLASS)
   end
+
+  def dashboard_close_button transfer
+    button_to("&times;".html_safe,
+              off_dashboard_transfer_path(transfer),
+              :class=>"close",
+              :remote=>true)
+
+  end
 end

@@ -1,5 +1,5 @@
 class TransfersController < ApplicationController
-  before_action :set_transfer, only: [:show, :edit, :update, :destroy]
+  before_action :set_transfer, only: [:show, :edit, :update, :destroy, :off_dashboard]
 
   # GET /transfers
   # GET /transfers.json
@@ -60,6 +60,14 @@ class TransfersController < ApplicationController
     respond_to do |format|
       format.html { redirect_to transfers_url, notice: 'Transfer was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def off_dashboard
+    @transfer.update_attribute(:on_dashboard, false)
+    respond_to do |format|
+      format.html { redirect_to dashboard_user_path(@current_user) }
+      format.js
     end
   end
 

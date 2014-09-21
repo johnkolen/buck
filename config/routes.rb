@@ -14,10 +14,14 @@ Rails.application.routes.draw do
   resources :users do
     member do
       get 'dashboard'
+      post 'dashboard'
     end
   end
 
   resources :transfers do
+    member do
+      post 'off_dashboard'
+    end
   end
 
   get 'sessions/new'
