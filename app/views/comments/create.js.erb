@@ -1,5 +1,5 @@
 <% transfer =
-    render :partial=>"users/transfer",:locals=>{:transfer=>@comment.transfer} %>
+    render :partial=>"transfers/show",:locals=>{:transfer=>@comment.transfer} %>
 content = $("<%=escape_javascript(transfer)%>")
 
 id = content.attr("id");
