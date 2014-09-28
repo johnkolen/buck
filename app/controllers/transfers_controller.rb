@@ -107,7 +107,7 @@ class TransfersController < ApplicationController
     def transfer_params
       params.
         require(:transfer).
-        permit(:user_id, :recipient_id, :amount, :note, :kind, :state)
+        permit(:user_id, :recipient_id, :amount, :note, :kind, :state, :image)
     end
 
   def state_change

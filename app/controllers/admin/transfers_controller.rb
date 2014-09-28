@@ -71,6 +71,6 @@ class Admin::TransfersController < ApplicationController
     def transfer_params
       params.
         require(:admin_transfer).
-        permit(:user_id, :recipient_id, :amount, :note, :kind, :user_state, :recipient_state)
+        permit(:user_id, :recipient_id, :amount, :note, :kind, :user_state, :recipient_state, :image)
     end
 end

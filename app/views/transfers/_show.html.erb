@@ -32,6 +32,11 @@
 	  <div>
 	    <%= transfer.note %>
 	  </div>
+	  <% if transfer.image.exists?  %>
+	    <div>
+	      <%= image_tag transfer.image.url(:medium) %>
+	    </div>
+	  <% end %>
 	  <%= transfer_actions transfer %>
 	</div>
       </div>

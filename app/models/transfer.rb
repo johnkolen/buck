@@ -273,5 +273,12 @@ class Transfer < ActiveRecord::Base
     end
     move_money if self.failed?
   end
+
+  # Image
+  has_attached_file(:image,
+                    :styles=>{:medium=>"200x200>", :thumb=>"80x80>"},
+                    :path=>"/transfers/images/:id_:basename.:style.:extension",
+                    :default_url=>":style/missing-image.png")
+  validates_attachment_content_type :image, :content_type=>/\Aimage\/.*\Z/
 end
 

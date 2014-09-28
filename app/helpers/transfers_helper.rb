@@ -14,6 +14,12 @@ module TransfersHelper
   def transfer_edit_fields form
     if @admin_page
       out = edit_field form, [:user_id, :recipient_id, :amount, :note]
+      image_label =
+        params[:action] == "edit" ? "Update Picture" : "Upload Picture"
+      out << edit_field(form,
+                        :image,
+                        :placeholder=>image_label,
+                        :format=>:file_field)
       out << edit_field(form,
                         :kind,
                         :format=>:select,
@@ -42,12 +48,18 @@ module TransfersHelper
                                :collection=>[query,
                                              :id,
                                              :full_name],
-                               :options=>{:prompt=>"Recipient"})
+                               :options=>{:prompt=>"Recipient?"})
       out << edit_field_simple(form,
                                :amount,
                                :format=>:select,
                                :select_options=>transfer_amounts)
-      out << edit_field_simple(form, :note, :placeholder=>"Why?")
+      out << edit_field_simple(form, :note, :placeholder=>"For?")
+      image_label =
+        params[:action] == "edit" ? "Update Picture" : "Upload Picture"
+      out << edit_field(form,
+                        :image,
+                        :placeholder=>image_label,
+                        :format=>:file_field)
     end
   end
 
