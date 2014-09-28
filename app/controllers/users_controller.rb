@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy, :dashboard]
+  before_action :set_user, only: [:show, :edit, :update, :dashboard]
+  before_action :ensure_correct_user, :only=>[:edit, :update, :dashboard]
 
   # GET /users
   # GET /users.json
@@ -51,16 +52,6 @@ class UsersController < ApplicationController
     end
   end
 
-  # DELETE /users/1
-  # DELETE /users/1.json
-  def destroy
-    @user.destroy
-    respond_to do |format|
-      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
-
   def dashboard
   end
 
@@ -80,5 +71,11 @@ class UsersController < ApplicationController
                :time_zone,
                :avatar,
                :credentials_attributes=>[:password, :password_confirmation])
+    end
+
+    def ensure_correct_user
+      unless @user.id == session[:user_id]
+        redirect_to user_path(session[:user_id])
+      end
     end
 end

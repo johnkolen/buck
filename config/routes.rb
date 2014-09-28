@@ -22,6 +22,10 @@ Rails.application.routes.draw do
 
   resources :transfers do
     member do
+      post 'accept'
+      post 'cancel'
+      post 'complete'
+      post 'fail'
       post 'off_dashboard'
     end
   end

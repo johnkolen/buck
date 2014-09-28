@@ -1,4 +1,4 @@
-<% color = transfer.user_id == session[:user_id] ? "bg-danger" : "bg-success" %>
+<% color = transfer_color transfer %>
 <div class="row transfer <%= color %>" id="transfer_<%=transfer.id%>">
   <div class=clearfix>
     <div class="pull-left avatar">
@@ -8,7 +8,7 @@
     <div class="content">
       <div>
 	<div>
-	  <div class="pull-right">
+	  <div class="pull-right amount">
 	    <%= number_to_currency(transfer.amount) %>
 	    <% if params[:action] == 'dashboard' %>
 	      <div>
@@ -17,6 +17,9 @@
 	    <% end %>
 	  </div>
 	  <div>
+	    <% if transfer.is_request? %>
+	      Request
+	    <% end %>
 	    <% if transfer.user_id == session[:user_id] %>
 	      To: <%= transfer.recipient.full_name %>
 	    <% else %>
@@ -29,6 +32,7 @@
 	  <div>
 	    <%= transfer.note %>
 	  </div>
+	  <%= transfer_actions transfer %>
 	</div>
       </div>
       <%= render(:partial=>"comments/list",

@@ -69,6 +69,8 @@ class Admin::TransfersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def transfer_params
-      params.require(:admin_transfer).permit(:user_id, :recipient_id, :amount, :note)
+      params.
+        require(:admin_transfer).
+        permit(:user_id, :recipient_id, :amount, :note, :kind, :user_state, :recipient_state)
     end
 end

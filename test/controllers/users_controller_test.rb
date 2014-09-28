@@ -42,25 +42,42 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test "should show user" do
-    get :show, id: @user
+    get :show, {id: @user}, {:user_id=>@user.id}
+    assert_response :success
+  end
+
+  test "should show user from other user" do
+    @other_user = users(:bob)
+    get :show, {id: @user}, {:user_id=>@other_user}
     assert_response :success
   end
 
   test "should get edit" do
-    get :edit, id: @user
+    get :edit, {id: @user}, {:user_id=>@user.id}
     assert_response :success
   end
 
+  test "fail get edit other user" do
+    @other_user = users(:bob)
+    get :edit, {id: @user}, {:user_id=>@other_user}
+    assert_redirected_to user_path(@other_user)
+  end
+
   test "should update user" do
-    patch :update, id: @user, user: { email: @user.email, first_name: @user.first_name, last_name: @user.last_name }
+    assert_not_equal 'x',  @user.last_name[-1], "precondition"
+    patch :update, {id: @user, user: { email: @user.email+'x', first_name: @user.first_name+'x', last_name: @user.last_name+'x' }}, {:user_id=>@user.id}
     assert_redirected_to user_path(assigns(:user))
+    @user.reload
+    assert_equal 'x',  @user.last_name[-1]
   end
 
-  test "should destroy user" do
-    assert_difference('User.count', -1) do
-      delete :destroy, id: @user
-    end
-
-    assert_redirected_to users_path
+  test "should not update other user" do
+    @other_user = users(:bob)
+    assert_not_equal 'x',  @user.last_name[-1], "precondition"
+    patch :update, {id: @user, user: { email: @user.email+'x', first_name: @user.first_name+'x', last_name: @user.last_name+'x' }}, {:user_id=>@other_user}
+    assert_redirected_to user_path(@other_user)
+    @user.reload
+    assert_not_equal 'x',  @user.last_name[-1]
   end
+
 end

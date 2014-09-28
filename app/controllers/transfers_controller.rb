@@ -1,5 +1,7 @@
 class TransfersController < ApplicationController
-  before_action :set_transfer, only: [:show, :edit, :update, :destroy, :off_dashboard]
+  before_action(:set_transfer,
+                only: [:show, :edit, :update, :destroy,
+                       :off_dashboard])
 
   # GET /transfers
   # GET /transfers.json
@@ -71,6 +73,30 @@ class TransfersController < ApplicationController
     end
   end
 
+  def complete
+    state_change do
+      @transfer.update_complete session[:user_id]
+    end
+  end
+
+  def accept
+    state_change do
+      @transfer.update_accept session[:user_id]
+    end
+  end
+
+  def cancel
+    state_change do
+      @transfer.update_cancel session[:user_id]
+    end
+  end
+
+  def fail
+    state_change do
+      @transfer.update_fail session[:user_id]
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_transfer
@@ -79,6 +105,20 @@ class TransfersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def transfer_params
-      params.require(:transfer).permit(:user_id, :recipient_id, :amount, :note)
+      params.
+        require(:transfer).
+        permit(:user_id, :recipient_id, :amount, :note, :kind, :state)
     end
+
+  def state_change
+    Transfer.transaction do
+      @transfer = Transfer.find(params[:id])
+      yield
+    end
+    respond_to do |format|
+      format.html { redirect_to dashboard_user_path(@current_user) }
+      format.js { render :update }
+    end
+  end
+
 end

@@ -1,0 +1,7 @@
+<% transfer =
+    render :partial=>"show",:locals=>{:transfer=>@transfer} %>
+content = $("<%=escape_javascript(transfer)%>")
+
+id = content.attr("id");
+$("#"+id).replaceWith(content);
+

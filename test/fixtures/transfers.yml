@@ -5,9 +5,14 @@ alan2bob:
   recipient: bob
   amount_cents: 100
   note: alan2bob
+  kind: <%=Transfer::KIND_PAY%>
+  state: <%=Transfer.new.completed!.state%>
 
 bob2alan:
   user: bob
   recipient: alan
   amount_cents: 200
   note: bob2alan
+  kind: <%=Transfer::KIND_PAY%>
+  state: <%=Transfer.new.completed!.state%>
+

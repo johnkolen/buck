@@ -138,4 +138,32 @@ module ButtonsHelper
       glyph(:pencil)
     end
   end
+
+  def ok_transfer_button transfer
+    button_to("OK",
+              complete_transfer_path(transfer),
+              :class=>BUTTON_CLASS,
+              :remote=>true)
+  end
+
+  def accept_transfer_button transfer
+    button_to("Accept",
+              accept_transfer_path(transfer),
+              :class=>BUTTON_CLASS,
+              :remote=>true)
+  end
+
+  def cancel_transfer_button transfer
+    button_to("Cancel",
+              cancel_transfer_path(transfer),
+              :class=>BUTTON_CLASS,
+              :remote=>true)
+  end
+
+  def fail_transfer_button transfer
+    button_to("Fail",
+              fail_transfer_path(transfer),
+              :class=>BUTTON_CLASS,
+              :remote=>true)
+  end
 end
