@@ -289,5 +289,20 @@ class Transfer < ActiveRecord::Base
   def self.recent number=10
     xfers = order(:comment_at=>:desc).limit(number)
   end
+
+  def message
+    case self.kind
+    when KIND_PAY
+      sprintf "Payment of $%.2f to %s %s.", self.amount, recipient.first_name, self.note
+    when KIND_REQUEST
+      sprintf "I request $%.2f from %, %s.", self.amount, recipient.first_name, self.note
+    when KIND_BET
+      sprintf("I bet %s, $%.2f, %s. If you fail, you will pay me $%.2f.",
+              recipient.first_name, self.amount, self.note, self.amount)
+    when KIND_PLEDGE
+      sprintf "I pledge to pay %s, $%.2f, %s.", recipient.first_name, self.amount, self.note
+    end
+  end
+
 end
 

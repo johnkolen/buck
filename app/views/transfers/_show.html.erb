@@ -30,7 +30,7 @@
 	    <%= transfer.created_at_tz.strftime "%m/%d/%y %I:%M%p"%>
 	  </div>
 	  <div>
-	    <%= transfer.note %>
+	    <%= transfer.message %>
 	  </div>
 	  <% if transfer.image.exists?  %>
 	    <div>
