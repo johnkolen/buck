@@ -9,6 +9,7 @@ class Transfer < ActiveRecord::Base
   has_many :comments
 
   before_create :initialize_state
+  before_create :initialize_comment_at
 
   scope(:involving,
         ->(user){ where("user_id = ? OR recipient_id = ?", user.id, user.id) })
@@ -280,5 +281,13 @@ class Transfer < ActiveRecord::Base
                     :path=>"/transfers/images/:id_:basename.:style.:extension",
                     :default_url=>":style/missing-image.png")
   validates_attachment_content_type :image, :content_type=>/\Aimage\/.*\Z/
+
+  def initialize_comment_at
+    self.comment_at = Time.now
+  end
+
+  def self.recent number=10
+    xfers = order(:comment_at=>:desc).limit(number)
+  end
 end
 

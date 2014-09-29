@@ -27,6 +27,7 @@
 		<li><%=link_to "Profile", user_path(session[:user_id])%></li>
 		<li><%=link_to "Dashboard",
 	        dashboard_user_path(session[:user_id])%></li>
+		<li><%=link_to "Recent", recent_transfers_path%></li>
 		<% if session[:is_admin] %>
 		  <li><%= admin_link %></li>
 		<% end %>

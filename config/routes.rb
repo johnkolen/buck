@@ -28,6 +28,9 @@ Rails.application.routes.draw do
       post 'fail'
       post 'off_dashboard'
     end
+    collection do
+      get 'recent'
+    end
   end
 
   get 'sessions/new'

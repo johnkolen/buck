@@ -6,6 +6,15 @@ module TransfersHelper
     out << show_field(transfer,
                       :created_at,
                       transfer.created_at_tz)
+    out << show_field(transfer,
+                      :updated_at,
+                      transfer.updated_at)
+    out << show_field(transfer,
+                      :comments,
+                      transfer.comments.count)
+    out << show_field(transfer,
+                      :comment_at,
+                      transfer.comment_at)
     out << show_field(transfer, :note)
     out << show_field(transfer, :kind, transfer.kind_str)
     out << show_field(transfer, :state, transfer.state_str)

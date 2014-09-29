@@ -9,6 +9,12 @@ class TransfersController < ApplicationController
     @transfers = Transfer.all
   end
 
+  # GET /transfers/recent
+  # GET /transfers/recent.json
+  def recent
+    @transfers = Transfer.recent
+  end
+
   # GET /transfers/1
   # GET /transfers/1.json
   def show
