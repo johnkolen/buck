@@ -10,4 +10,9 @@
   <div>
     <%= comment.note %>
   </div>
+  <% if comment.image.exists?  %>
+    <div>
+      <%= image_tag comment.image.url(:medium) %>
+    </div>
+  <% end %>
 </div>

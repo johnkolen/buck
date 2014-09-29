@@ -10,3 +10,5 @@ $ ->
     modal.find('.modal-title').html("Add Comment")
     modal.find('form').attr('action', "/comments")
     modal.find('form').attr('method', "post"))
+
+

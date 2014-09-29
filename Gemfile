@@ -58,3 +58,6 @@ gem 'bcrypt'
 gem "paperclip", "~> 4.2"
 # Save attachments in S3
 gem "aws-sdk"
+
+# upload files
+gem 'jquery-fileupload-rails'

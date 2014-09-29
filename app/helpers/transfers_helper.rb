@@ -9,6 +9,7 @@ module TransfersHelper
     out << show_field(transfer, :note)
     out << show_field(transfer, :kind, transfer.kind_str)
     out << show_field(transfer, :state, transfer.state_str)
+    out << show_field(transfer, :image, image_tag(transfer.image.url(:medium)))
   end
 
   def transfer_edit_fields form
