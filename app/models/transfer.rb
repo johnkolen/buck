@@ -295,7 +295,7 @@ class Transfer < ActiveRecord::Base
     when KIND_PAY
       sprintf "Payment of $%.2f to %s %s.", self.amount, recipient.first_name, self.note
     when KIND_REQUEST
-      sprintf "I request $%.2f from %, %s.", self.amount, recipient.first_name, self.note
+      sprintf "I request $%.2f from %s %s.", self.amount, recipient.first_name, self.note
     when KIND_BET
       sprintf("I bet %s, $%.2f, %s. If you fail, you will pay me $%.2f.",
               recipient.first_name, self.amount, self.note, self.amount)
@@ -304,5 +304,9 @@ class Transfer < ActiveRecord::Base
     end
   end
 
+  before_save :update_comment_at
+  def update_comment_at
+    self.comment_at = Time.now
+  end
 end
 

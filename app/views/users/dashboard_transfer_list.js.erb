@@ -1,0 +1,7 @@
+<% puts "transfers = #{@transfers.size}" %>
+$("#transfer_list form #timestamp").val("<%=Time.now - 1 %>")
+<% @transfers.each do |transfer| %>
+  <% content = render :partial=>"transfers/show", :locals=>{:transfer=>transfer} %>
+window.update_transfer_list($("<%= escape_javascript content %>"))
+<% end %>
+setTimeout(function(){$("#transfer_list form#update").submit()}, window.transfer_list_update_interval)

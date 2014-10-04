@@ -1,6 +1,15 @@
+<div id="foo"></div>
+<div class=row id="transfer_list">
+<%= form_tag dashboard_transfer_list_user_path(@user), :remote=>true, :id=>"update" do %>
+  <%= hidden_field_tag :timestamp, Time.now %>
+<% end %>
 <% q = Transfer.involving(@user) %>
 <% q = q.where(:on_dashboard=>true) if params[:action] == 'dashboard' %>
 <% q.order(:created_at).reverse_order.each do |transfer| %>
   <%= render :partial=>"transfers/show", :locals=>{:transfer=>transfer} %>
 <% end %>
 <%= render "comments/modal" %>
+</div>
+<script>
+setTimeout(function(){$("#transfer_list form#update").submit()}, window.transfer_list_update_interval)
+</script>

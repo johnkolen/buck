@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     member do
       get 'dashboard'
       post 'dashboard'
+      post 'dashboard_transfer_list'
     end
   end
 

@@ -10,7 +10,7 @@
 	<div>
 	  <div class="pull-right amount">
 	    <%= number_to_currency(transfer.amount) %>
-	    <% if params[:action] == 'dashboard' %>
+	    <% if /^dashboard/ =~ params[:action] %>
 	      <div>
 		<%= dashboard_close_button transfer %>
 	      </div>

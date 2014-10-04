@@ -1,6 +1,9 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :dashboard]
-  before_action :ensure_correct_user, :only=>[:edit, :update, :dashboard]
+  before_action :set_user, only: [:show, :edit, :update,
+                                  :dashboard, :dashboard_transfer_list]
+  before_action :ensure_correct_user, :only=>[:edit, :update,
+                                              :dashboard,
+                                              :dashboard_transfer_list]
 
   # GET /users
   # GET /users.json
@@ -53,6 +56,17 @@ class UsersController < ApplicationController
   end
 
   def dashboard
+  end
+
+  def dashboard_transfer_list
+    @transfers = Transfer.
+      involving(@user).
+      where(:on_dashboard=>true).
+      where(["comment_at > ?", Time.zone.parse(params[:timestamp])]).
+      order(:created_at)
+    respond_to do |format|
+      format.js
+    end
   end
 
   private
