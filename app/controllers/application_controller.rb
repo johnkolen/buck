@@ -28,7 +28,7 @@ class ApplicationController < ActionController::Base
 
   def paged_search klass
     result = klass
-    sp = params[:search].dup
+    sp = (params[:search] || {}).dup
 
     if params[:commit]=="Reset"
       params.delete(:search)
