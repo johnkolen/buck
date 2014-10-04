@@ -1,7 +1,7 @@
 class Credential < ActiveRecord::Base
   attr_accessor :password
 
-  validates :user, :presence=>true
+  validates :user, :presence=>true, :uniqueness=>true
   validates :password, :confirmation=>true, :if=>:has_password?
 
   belongs_to :user

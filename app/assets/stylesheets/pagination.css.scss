@@ -1,0 +1,4 @@
+@import "scss/colors";
+.pagination > .active > span {
+    background-color: $color-btn-info;
+}

@@ -17,6 +17,9 @@
 @import "bootstrap";
 @import "scss/colors";
 
+.pagination > .active > span {
+    background-color: $color-btn-info;
+}
 #error_explanation {
     background-color: $color-bg;
     border-color: $color-bg;
@@ -54,7 +57,11 @@ header {
     margin-top: -20px;
     }
 }
-
+li.header-elem {
+    a {
+	padding-top: 0.5em;
+    }
+}
 h1 {
     text-align: center;
 }

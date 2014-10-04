@@ -2,7 +2,7 @@
   <% label = /new|create/ =~ params[:action] ? "Sign Up!" : "Update Profile"%>
   <%= edit_fields form, :label=>label, :html=>{:multipart=>true} do %>
     <%=user_edit_fields form %>
-    <% if params[:action] == "new" %>
+    <% if params[:action] == "new" || params[:action] == "create" %>
       <%=password_credential_edit_fields form %>
     <% end %>
   <% end %>
