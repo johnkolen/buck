@@ -61,3 +61,7 @@ gem "aws-sdk"
 
 # upload files
 gem 'jquery-fileupload-rails'
+
+# pagination
+gem 'will_paginate'
+gem 'will_paginate-bootstrap'

@@ -4,7 +4,8 @@ class Admin::TransfersController < ApplicationController
   # GET /transfers
   # GET /transfers.json
   def index
-    @transfers = Admin::Transfer.all
+    t = Admin::Transfer.joins(:user, :recipient).includes(:user, :recipient)
+    @transfers = paged_search t
   end
 
   # GET /transfers/1

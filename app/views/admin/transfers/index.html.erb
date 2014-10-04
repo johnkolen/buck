@@ -1,6 +1,8 @@
 <h1>Transfers</h1>
 
-<table>
+<%= paged_search_header admin_transfers_path, @transfers, :first_name, :last_name %>
+
+<table class="table" >
   <thead>
     <tr>
       <th>User</th>
