@@ -43,4 +43,6 @@ Rails.application.configure do
       :bucket=>'buck-development'
     }
   }
+  config.action_mailer.default_url_options = { host: 'betuabuck.com' }
+  config.action_mailer.delivery_method = :letter_opener
 end

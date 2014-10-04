@@ -1,0 +1,11 @@
+<h1>Welcome to Bet-U-A-Buck</h1>
+<p>
+Please validate your email address by clicking on the link below:
+</p>
+<%=link_to @user.validation.key, validate_users_path(:key=>@user.validation.key) %>
+<p>
+Sincerely,
+</p>
+<p>
+Bet-U-A-Buck Support Team
+

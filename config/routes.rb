@@ -19,6 +19,9 @@ Rails.application.routes.draw do
       post 'dashboard'
       post 'dashboard_transfer_list'
     end
+    collection do
+      get 'validate'
+    end
   end
 
   resources :transfers do

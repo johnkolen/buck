@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
            :inverse_of=>:recipient,
            :dependent=>:destroy)
   has_many :comments
+  has_one :validation
 
   # Credentials
   accepts_nested_attributes_for :credentials
