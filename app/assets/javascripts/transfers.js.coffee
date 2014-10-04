@@ -11,4 +11,11 @@ window.update_transfer_list = (transfer)->
   $("#transfer_list").prepend(transfer.hide())
   $("#" + id).fadeIn(1000)
 
+window.transfer_messages =
+ ["Send Money", "Request Money", "Send Bet", "Send Pledge"]
+
+$ ->
+  $(".new_transfer #transfer_kind").on("change", (event)->
+    msg = window.transfer_messages[$(this).val()]
+    $(".new_transfer input[type=submit]").val(msg))
 
