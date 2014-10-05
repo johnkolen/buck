@@ -1,1 +1,3 @@
-$("#transfer_<%=@transfer.id%>").remove()
+tgt = $("#transfer_<%=@transfer.id%>")
+tgt.fadeOut(1000, function(){tgt.remove()})
+
