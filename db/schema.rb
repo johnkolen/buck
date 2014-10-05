@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141004222943) do
+ActiveRecord::Schema.define(version: 20141005175015) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,9 @@ ActiveRecord::Schema.define(version: 20141004222943) do
     t.datetime "image_updated_at"
   end
 
+  add_index "comments", ["transfer_id"], name: "index_comments_on_transfer_id", using: :btree
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
+
   create_table "credentials", force: true do |t|
     t.integer  "user_id"
     t.string   "encrypted_password"
@@ -36,6 +39,7 @@ ActiveRecord::Schema.define(version: 20141004222943) do
     t.datetime "updated_at"
   end
 
+  add_index "credentials", ["encrypted_password"], name: "index_credentials_on_encrypted_password", using: :btree
   add_index "credentials", ["user_id"], name: "index_credentials_on_user_id", using: :btree
 
   create_table "sessions", force: true do |t|
@@ -65,6 +69,10 @@ ActiveRecord::Schema.define(version: 20141004222943) do
     t.datetime "image_updated_at"
     t.datetime "comment_at"
   end
+
+  add_index "transfers", ["comment_at"], name: "index_transfers_on_comment_at", using: :btree
+  add_index "transfers", ["recipient_id"], name: "index_transfers_on_recipient_id", using: :btree
+  add_index "transfers", ["user_id"], name: "index_transfers_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "first_name"
