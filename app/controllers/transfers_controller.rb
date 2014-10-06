@@ -1,4 +1,5 @@
 class TransfersController < ApplicationController
+  before_action :check_validation
   before_action(:set_transfer,
                 only: [:show, :edit, :update, :destroy,
                        :off_dashboard])

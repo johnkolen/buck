@@ -65,3 +65,6 @@ gem 'jquery-fileupload-rails'
 # pagination
 gem 'will_paginate'
 gem 'will_paginate-bootstrap'
+
+# email development
+gem 'letter_opener', :group=>[:development]

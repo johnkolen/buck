@@ -33,3 +33,10 @@ $ ->
     label = tgt.val().replace(/\\/g, '/').replace(/.*\//, '')
     tgt.parent().find('.msg').html('Uploading')
     tgt.parent().find('.filename').html(' '+label))
+  $("#password_form > a").on("click", ()->
+    tgt = $(this)
+    if tgt.html() == "Change Password"
+      tgt.html("Close Change Password")
+    else
+      $("#password_form .well").remove()
+      tgt.html("Change Password"))

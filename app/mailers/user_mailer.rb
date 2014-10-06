@@ -1,10 +1,18 @@
 class UserMailer < ActionMailer::Base
-  default from: "support@betuabuck.com"
+  default from: "support@betabuck.com"
 
   def validation user
     @user = user
     change_default_host validate_users_url(@user) do
       mail :to=>@user.email, :subject=>"Email Validation"
+    end
+  end
+
+  def temp_password user, password
+    @user = user
+    @password = password
+    change_default_host validate_users_url(@user) do
+      mail :to=>@user.email, :subject=>"Temporary Password"
     end
   end
 

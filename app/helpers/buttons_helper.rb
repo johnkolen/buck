@@ -166,4 +166,10 @@ module ButtonsHelper
               :class=>BUTTON_CLASS,
               :remote=>true)
   end
+
+  def forgot_password_button
+    link_to("Forgot Password",
+            forgot_password_users_path,
+            :class=>"btn btn-info center-block")
+  end
 end

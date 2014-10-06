@@ -18,9 +18,16 @@ Rails.application.routes.draw do
       get 'dashboard'
       post 'dashboard'
       post 'dashboard_transfer_list'
+      get 'pending_validation'
+      get 'resend_validation'
+      get 'new_validation'
+      patch 'update_password'
+      get 'change_password'
     end
     collection do
       get 'validate'
+      get 'forgot_password'
+      post 'temp_password'
     end
   end
 

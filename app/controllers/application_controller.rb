@@ -54,4 +54,14 @@ class ApplicationController < ActionController::Base
     result.paginate(:page=>params[:page], :per_page=>5)
   end
 
+  def check_validation
+    if @current_user.validation
+      redirect_to pending_validation_user_path(@current_user)
+    end
+  end
+
+  def check_temporary_password
+    c = @current_user.password_credential
+    redirect_to change_password_user_path(@current_user) if c && c.temporary?
+  end
 end

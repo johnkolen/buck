@@ -43,6 +43,10 @@ Rails.application.configure do
       :bucket=>'buck-development'
     }
   }
-  config.action_mailer.default_url_options = { host: 'betuabuck.com' }
+  port = 80
+  port = Rails::Server.new.options[:Port] if defined? Rails::Server
+  config.action_mailer.default_url_options = { host: 'localhost',
+  port: port}
   config.action_mailer.delivery_method = :letter_opener
+
 end

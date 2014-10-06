@@ -2,7 +2,13 @@ class Credential < ActiveRecord::Base
   attr_accessor :password
 
   validates :user, :presence=>true, :uniqueness=>true
-  validates :password, :confirmation=>true, :if=>:has_password?
+  MIN_PASSWORD_LENGTH = Rails.env=="development" ? 3 : 8
+  validates(:password,
+            :if=>:has_password?,
+            :confirmation=>{:message=>"Your password does not match the confirmation password."},
+            :length=>{:minimum=>MIN_PASSWORD_LENGTH,
+              :too_short=>"Try a longer password, at least "+
+              "#{MIN_PASSWORD_LENGTH} characters."})
 
   belongs_to :user
 

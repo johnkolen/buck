@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141005175015) do
+ActiveRecord::Schema.define(version: 20141005222452) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,8 @@ ActiveRecord::Schema.define(version: 20141005175015) do
     t.string   "salt"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "temporary",          default: false
+    t.datetime "expires_at"
   end
 
   add_index "credentials", ["encrypted_password"], name: "index_credentials_on_encrypted_password", using: :btree

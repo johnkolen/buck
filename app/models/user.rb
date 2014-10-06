@@ -16,6 +16,8 @@ class User < ActiveRecord::Base
   has_many :comments
   has_one :validation
 
+  after_create :create_validation
+
   # Credentials
   accepts_nested_attributes_for :credentials
 
@@ -38,6 +40,7 @@ class User < ActiveRecord::Base
   def signin session
     session[:user_id] = id
     session[:is_admin] = is_admin
+    session[:pending] = self.validation(true) ? true : false
   end
 
   # Avatar
@@ -47,9 +50,28 @@ class User < ActiveRecord::Base
                     :default_url=>":style/missing-avatar.png")
   validates_attachment_content_type :avatar, :content_type=>/\Aimage\/.*\Z/
 
+  # temporary password
+  def create_temporary_password
+    password = BCrypt::Engine.generate_salt[10..25]
+    credentials.each do |credential|
+      if credential.type_name == 'password'
+        credential.delete
+        credentials.create(:password=>password,
+                           :temporary=>true,
+                           :expires_at=>Time.now + 2.days)
+        return password
+      end
+    end
+    # you will need to login some otherway
+    []  # alternate credentials
+  end
+
   # Helpers
   def full_name
     "#{first_name} #{last_name}"
+  end
+
+  def current_password
   end
 
   def membership_time_str

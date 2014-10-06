@@ -1,0 +1,9 @@
+<div class="col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4 dashboard">
+<h1>Welcome to Bet A Buck</h1>
+<p>
+  We have resent a validation mesage to your email account <%=@user.email%>.
+  Please open the email and click on the link provided. If you do not
+  see an email from us, check your spam folder.
+</p>
+<%= link_to "Resend", resend_validation_user_path(@user), :class=>"btn btn-info" %>
+</div>
