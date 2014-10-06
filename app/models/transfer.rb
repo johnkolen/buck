@@ -1,8 +1,20 @@
+class TransferValidator < ActiveModel::Validator
+  def validate transfer
+    if transfer.user_id == transfer.recipient_id
+      transfer.errors[:recipient_id] << "Recipient can't be self."
+    end
+  end
+end
+
 class Transfer < ActiveRecord::Base
   validates :amount_cents, :presence=>true
   validates :user, :presence=>true
   validates :recipient, :presence=>true
   validates :note, :presence=>true
+  validates(:amount_cents,
+            :numericality=>{:greater_than=>0,
+              :less_than_or_equal_to=>500})
+  validates_with TransferValidator
 
   belongs_to :user, :inverse_of=>:transfers
   belongs_to :recipient, :class_name=>"User", :inverse_of=>:received_transfers

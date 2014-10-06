@@ -4,6 +4,19 @@ class TransferTest < ActiveSupport::TestCase
   def setup
     @transfer = Transfer.new
   end
+  test "successful create" do
+    @transfer = Transfer.create(create_params)
+  end
+
+  def create_params
+    {:user_id=>users(:alan).id,
+      :recipient_id=>users(:bob).id,
+      :amount_cents=>200,
+      :note=>"a note",
+      :kind=>0
+      }
+  end
+
   %w{completed failed canceled pending pending_accept}.each do |v|
     %w{user recipient}.each do |uc|
       test "is_#{uc}_#{v}?" do
@@ -89,5 +102,23 @@ class TransferTest < ActiveSupport::TestCase
     assert @transfer.recipient_canceled?
     @transfer.recipient_state=8
     assert @transfer.recipient_pending?
+  end
+
+  test "amount_cents range fail" do
+    @transfer.amount_cents = 501
+    @transfer.save
+    assert_match /must be less than/, @transfer.errors[:amount_cents].first
+    @transfer.amount_cents = 0
+    @transfer.save
+    assert_match /must be greater than/, @transfer.errors[:amount_cents].first
+  end
+
+  test "self transfer fail" do
+    alan = users(:alan)
+    @transfer.user_id = alan.id
+    @transfer.recipient_id = alan.id
+    @transfer.save
+    assert_equal("Recipient can't be self.",
+                 @transfer.errors[:recipient_id].first)
   end
 end
