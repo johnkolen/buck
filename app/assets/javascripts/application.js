@@ -16,4 +16,5 @@
 //= require jquery-fileupload/vendor/tmpl
 //= require bootstrap-sprockets
 // turning off: require turbolinks
+//= require bootstrap-select
 //= require_tree .

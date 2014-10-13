@@ -18,4 +18,4 @@ $ ->
   $(".new_transfer #transfer_kind").on("change", (event)->
     msg = window.transfer_messages[$(this).val()]
     $(".new_transfer input[type=submit]").val(msg))
-
+  $('.selectpicker').selectpicker();

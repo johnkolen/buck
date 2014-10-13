@@ -68,3 +68,6 @@ gem 'will_paginate-bootstrap'
 
 # email development
 gem 'letter_opener', :group=>[:development]
+
+# better select boxes
+gem 'bootstrap-select-rails'

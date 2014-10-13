@@ -58,7 +58,13 @@ module TransfersHelper
                                :collection=>[query,
                                              :id,
                                              :full_name],
-                               :options=>{:prompt=>"Recipient?"})
+                               :options=>{:prompt=>"Recipient?"},
+                               :class=>"selectpicker",
+                               :data=>{
+                                 :size=>10,
+                                 :width=>'100%',
+                                 'live-search'=>'true'
+                               })
       out << edit_field_simple(form,
                                :amount,
                                :format=>:select,

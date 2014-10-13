@@ -55,12 +55,14 @@ module EditHelper
       form.collection_select(field,
                              *options[:collection],
                              options[:options] || {},
+                             :data=>options[:data],
                              :class=>options[:class]||'form-control')
     when :select
       form.select(field,
                   options_for_select(options[:select_options],
                                      form.object.send(field)),
                   options[:options] || {},
+                  :data=>options[:data],
                   :class=>options[:class]||'form-control')
     when :file_field
       opts = {:class=>options[:class]||'form-control'}
