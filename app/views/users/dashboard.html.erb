@@ -1,12 +1,9 @@
-<div class="col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4 dashboard">
-  <h1>Your Dashboard</h1>
-  <% if flash[:notice] %>
-    <div class=row>
-      <h3><%= flash[:notice] %></h3>
-    </div>
-  <% end %>
+<% if flash[:notice] %>
   <div class=row>
-    <%= render :partial=>"transfer_form" %>
+    <h3><%= flash[:notice] %></h3>
   </div>
-  <%= render :partial=>"transfer_list"%>
+<% end %>
+<%= render :partial=>"transfer_form" %>
+<div class=row>
+<%= render :partial=>"transfer_list"%>
 </div>

@@ -3,6 +3,8 @@ class CommonController < ApplicationController
   before_action :check_validation
   before_action :check_temporary_password
 
+  layout 'common'
+
   def hot
   end
 

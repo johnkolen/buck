@@ -8,12 +8,14 @@ class UsersController < ApplicationController
                                              :temp_password]
   before_action :set_user, only: [:show, :edit, :update,
                                   :dashboard, :dashboard_transfer_list,
+                                  :friends,
                                   :pending_validation,
                                   :resend_validation,
                                   :update_password,
                                   :change_password]
   before_action :ensure_correct_user, :only=>[:edit, :update,
                                               :dashboard,
+                                              :friends,
                                               :dashboard_transfer_list]
   before_action(:check_temporary_password,
                 :except=>[:change_password,
@@ -36,6 +38,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    render :layout=>"layouts/common"
   end
 
   # GET /users/new
@@ -104,6 +107,11 @@ class UsersController < ApplicationController
   end
 
   def dashboard
+    render :layout=>"layouts/common"
+  end
+
+  def friends
+    render :layout=>"layouts/common"
   end
 
   def dashboard_transfer_list

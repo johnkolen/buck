@@ -11,7 +11,7 @@
   <header>
     <%= render :partial=>'layouts/header2' if session[:user_id] %>
   </header>
-  <%= yield %>
+  <%= content_for?(:common_content) ? yield(:common_content) : yield %>
 
   <footer>
   </footer>

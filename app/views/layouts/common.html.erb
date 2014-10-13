@@ -1,0 +1,32 @@
+<% content_for :common_content do %>
+<div class="col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4 featured">
+  <div class="row">
+    <div class="col-sm-4">
+      <div><%=link_to show_avatar(@user, :medium, :class=>"img-responsive"), user_path(@user), :method=>:get%></div>
+      <% activity = @user.activity %>
+      <div class="activity">
+	<% if true || session[:user_id] != @user.id %>
+	<h4><%= @user.full_name%></h4>
+	<% end %>
+	<span class="receive">$<%=activity[:receive].to_i%></span>
+	&nbsp;
+	<span class="give">$<%=activity[:give].to_i%></span>
+	<% if session[:is_admin] %>
+	  <p>
+	    <%= admin_button %>
+	  </p>
+	<% end %>
+      </div>
+    </div>
+    <div class="col-sm-8">
+      <div class='row text-center pnav'>
+	<div class="center-block">
+	  <%= user_navigation %>
+	</div>
+      </div>
+      <%= yield %>
+    </div>
+  </div>
+</div>
+<% end %>
+<%= render template: "layouts/application" %>

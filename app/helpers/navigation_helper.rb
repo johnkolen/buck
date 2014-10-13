@@ -34,18 +34,9 @@ module NavigationHelper
   end
 
   def user_navigation *opts
-    options = {:nav_class=>"user_navigation"}
-    options.merge! opts.last if opts && opts.last.is_a?(Hash)
-    destinations = [home_link, hot_link, friends_link, featured_link]
-    li_list =
-      destinations.map {|x| content_tag(:li, x,:class=>options[:class]) }
-    common_navigation li_list, options
-  end
-
-  def user_navigation *opts
     options = {
       :nav_class=>"user_navigation",
-      :destinations=>[home_link, hot_link, friends_link, featured_link]
+      :destinations=>[home_link, friends_link, recent_link]
     }
     options.merge! opts.last if opts && opts.last.is_a?(Hash)
     li_list = options[:destinations].map do |x|

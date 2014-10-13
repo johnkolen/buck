@@ -3,11 +3,6 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 @import "scss/colors";
 
-.transfer {
-    padding: 2% 5% 2% 5%;
-    border-radius: 4px;
-    margin-bottom: 1%;
-}
 // http://www.abeautifulsite.net/whipping-file-inputs-into-shape-with-bootstrap-3/
 .btn-file {
     position: relative;
@@ -60,9 +55,11 @@
     font-weight: bold;
     text-align: center;
     .give {
-	color: $color-give
+	color: $color-give;
+	font-size: 200%;
     }
     .receive {
-	color: $color-receive
+	color: $color-receive;
+	font-size: 200%;
     }
 }

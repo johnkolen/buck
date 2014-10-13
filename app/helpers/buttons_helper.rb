@@ -113,6 +113,11 @@ module ButtonsHelper
             admin_path,
             :class=>"")
   end
+  def admin_button
+    button_to("Admin",
+            admin_path,
+            :class=>BUTTON_CLASS)
+  end
 
   def edit_profile_button user
     link_to("Edit Profile", edit_user_path(user), :class=>BUTTON_CLASS)
@@ -179,7 +184,7 @@ module ButtonsHelper
     link_to("Hot", hot_path, :method=>:get)
   end
   def friends_link
-    link_to("Friends", dashboard_user_path(session[:user_id]), :method=>:get)
+    link_to("Friends", friends_user_path(session[:user_id]), :method=>:get)
   end
   def featured_link
     link_to("Featured", featured_path, :method=>:get)
@@ -189,5 +194,8 @@ module ButtonsHelper
   end
   def donate_link
     link_to("Donate", featured_path, :method=>:get)
+  end
+  def recent_link
+    link_to "Recent", recent_transfers_path, :method=>:get
   end
 end

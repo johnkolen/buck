@@ -14,6 +14,8 @@ class TransfersController < ApplicationController
   # GET /transfers/recent.json
   def recent
     @transfers = Transfer.recent
+    @user = User.find(session[:user_id])
+    render :layout=>"layouts/common"
   end
 
   # GET /transfers/1

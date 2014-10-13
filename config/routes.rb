@@ -32,6 +32,7 @@ Rails.application.routes.draw do
       get 'new_validation'
       patch 'update_password'
       get 'change_password'
+      get 'friends'
     end
     collection do
       get 'validate'
