@@ -115,8 +115,9 @@ module ButtonsHelper
   end
   def admin_button
     button_to("Admin",
-            admin_path,
-            :class=>BUTTON_CLASS)
+              admin_path,
+              :method=>:get,
+              :class=>BUTTON_CLASS)
   end
 
   def edit_profile_button user
