@@ -2,7 +2,9 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.transfer {
+.row.transfer {
+    margin-left: 0px;
+    margin-right: 0px;
     .avatar {
 	margin-right: 10px;
     }

@@ -82,4 +82,22 @@ class User < ActiveRecord::Base
   def descriptor
     full_name
   end
+
+  def activity
+    s = Transfer.new.user_completed!.recipient_completed!.state
+    r = g = 0
+    r += Transfer.where(:state=>s,
+                        :recipient_id=>self.id,
+                        :kind=>Transfer::NORMAL_KINDS).sum(:amount_cents)
+    r += Transfer.where(:state=>s,
+                        :user_id=>self.id,
+                        :kind=>Transfer::REVERSE_KINDS).sum(:amount_cents)
+    g += Transfer.where(:state=>s,
+                        :user_id=>self.id,
+                        :kind=>Transfer::NORMAL_KINDS).sum(:amount_cents)
+    g += Transfer.where(:state=>s,
+                        :recipient_id=>self.id,
+                        :kind=>Transfer::REVERSE_KINDS).sum(:amount_cents)
+    {:receive=>r/100.0,:give=>g/100.0}
+  end
 end

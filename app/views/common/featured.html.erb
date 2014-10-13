@@ -1,0 +1,28 @@
+<div class="col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4 featured">
+  <div class="row">
+    <div class="col-sm-4">
+      <div><%=show_avatar @user, :medium, :class=>"img-responsive"%></div>
+      <% activity = @user.activity %>
+      <div class="activity">
+	<span class="receive">$<%=activity[:receive].to_i%></span>
+	&nbsp;
+	<span class="give">$<%=activity[:give].to_i%></span>
+      </div>
+    </div>
+    <div class="col-sm-8">
+      <div class='row text-center pnav'>
+	<div clss="center-block">
+	  <%= user_navigation %>
+	</div>
+      </div>
+      <div class='row text-center pnav'>
+	<div clss="center-block">
+	  <%= user_navigation :destinations=>[sponsored_link, donate_link] %>
+	</div>
+      </div>
+      <div class=row>
+	<%= render :partial=>"transfers/list"%>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,6 +1,7 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import "scss/colors";
 
 .transfer {
     padding: 2% 5% 2% 5%;
@@ -31,5 +32,37 @@
 #password_form {
     .collapse {
 	margin-top: 0.5em;
+    }
+}
+
+.navbar-default.user_navigation {
+    font-family: Georgia, serif;
+    font-weight: bold;
+    color: $color-text-rev;
+    background-color: $color-btn-info;
+    /*position: fixed;*/
+    width: auto;
+    .navbar-nav > li > a {
+	color: $color-text-rev;
+    }
+    .container {
+	width: auto;
+	padding-left: 0px;
+	padding-right: 0px;
+    }
+}
+.row.pnav {
+    margin-bottom: 0px;
+}
+
+.activity {
+    font-family: Georgia, serif;
+    font-weight: bold;
+    text-align: center;
+    .give {
+	color: $color-give
+    }
+    .receive {
+	color: $color-receive
     }
 }

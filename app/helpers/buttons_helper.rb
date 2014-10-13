@@ -172,4 +172,22 @@ module ButtonsHelper
             forgot_password_users_path,
             :class=>"btn btn-info center-block")
   end
+  def home_link
+    link_to("Home", dashboard_user_path(session[:user_id]), :method=>:get)
+  end
+  def hot_link
+    link_to("Hot", hot_path, :method=>:get)
+  end
+  def friends_link
+    link_to("Friends", dashboard_user_path(session[:user_id]), :method=>:get)
+  end
+  def featured_link
+    link_to("Featured", featured_path, :method=>:get)
+  end
+  def sponsored_link
+    link_to("Sponsored", sponsored_path, :method=>:get)
+  end
+  def donate_link
+    link_to("Donate", featured_path, :method=>:get)
+  end
 end

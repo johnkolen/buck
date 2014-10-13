@@ -12,7 +12,7 @@ module NavigationHelper
 
   def common_navigation list, options
     content_tag :div, :class=>"common_navigation" do
-    content_tag :div, :class=>"navbar navbar-default show_navigation", :role=>"navigation" do
+    content_tag :div, :class=>"#{options[:nav_class]} navbar navbar-default", :role=>"navigation" do
      content_tag :div, :class=>"container" do
         content_tag :ul, list.join.html_safe, :class=>"nav navbar-nav"
      end
@@ -31,6 +31,27 @@ module NavigationHelper
 
     list_opts = list_opts.map {|x| content_tag(:li, x,:class=>options[:class]) }
     common_navigation list_opts, options
+  end
+
+  def user_navigation *opts
+    options = {:nav_class=>"user_navigation"}
+    options.merge! opts.last if opts && opts.last.is_a?(Hash)
+    destinations = [home_link, hot_link, friends_link, featured_link]
+    li_list =
+      destinations.map {|x| content_tag(:li, x,:class=>options[:class]) }
+    common_navigation li_list, options
+  end
+
+  def user_navigation *opts
+    options = {
+      :nav_class=>"user_navigation",
+      :destinations=>[home_link, hot_link, friends_link, featured_link]
+    }
+    options.merge! opts.last if opts && opts.last.is_a?(Hash)
+    li_list = options[:destinations].map do |x|
+      content_tag(:li, x,:class=>options[:class])
+    end
+    common_navigation li_list, options
   end
 
   def any_navigation obj, *list_opts

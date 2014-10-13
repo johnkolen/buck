@@ -1,5 +1,14 @@
 Rails.application.routes.draw do
 
+  get 'common/hot'
+  get 'hot'=>'common#hot'
+  get 'common/featured'
+  get 'featured'=>'common#featured'
+  get 'common/sponsored'
+  get 'sponsored'=>'common#sponsored'
+  get 'common/donate'
+  get 'donate'=>'common#donate'
+
   resources :comments
 
   root 'static_pages#root'

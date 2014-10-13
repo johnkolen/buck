@@ -67,6 +67,8 @@ class Transfer < ActiveRecord::Base
     KIND_REQUEST=>"Request",
     KIND_BET=>"Bet",
     KIND_PLEDGE=>"Pledge"}
+  NORMAL_KINDS = [KIND_PAY, KIND_BET, KIND_PLEDGE]
+  REVERSE_KINDS = [KIND_PLEDGE]
 
   def self.kind_options
     KIND_OPTIONS

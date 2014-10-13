@@ -1,4 +1,4 @@
 <%@transfers.each do |transfer| %>
-  <%= render :partial=>"show", :locals=>{:transfer=>transfer} %>
+  <%= render :partial=>"transfers/show", :locals=>{:transfer=>transfer} %>
 <% end %>
 <%= render "comments/modal" %>
