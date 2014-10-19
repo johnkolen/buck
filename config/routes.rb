@@ -22,6 +22,12 @@ Rails.application.routes.draw do
     resources :transfers
   end
 
+  namespace :friends do
+    get :add
+    post :add
+    post :remove
+  end
+
   resources :users do
     member do
       get 'dashboard'

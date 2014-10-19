@@ -1,6 +1,12 @@
 <div class=row>
   Member for <%=@user.membership_time_str%>
 </div>
+<%= form_tag friends_add_path, :remote=>true, :id=>:friend_cb_form do %>
+<%=hidden_field_tag :id, @user.id %>
+<div class=row>
+  Friend <%=check_box_tag :cb, "cb", @current_user.is_friend?(@user), :class=>"" %>
+</div>
+<% end %>
 <% if @user.id == session[:user_id] %>
   <div class=row>
     <%= edit_profile_button @user %>

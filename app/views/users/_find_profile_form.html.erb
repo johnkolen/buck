@@ -1,0 +1,15 @@
+<%=form_tag "/users/#", :method=>:get, :id=>"find-profile" do%>
+<% q = User %>
+<% q = q.where.not(:id=>except) if defined? :except %>
+<%=select_tag(:id,
+	      options_from_collection_for_select(q.all,
+						 :id,
+						 :full_name),
+	      :class=>"selectpicker",
+              :data=>{
+              :size=>10,
+              :width=>'100%',
+              'live-search'=>'true'
+              }) %>
+<%= submit_tag "View Profile", :class=>"btn btn-info form-control"%>
+<% end %>

@@ -1,3 +1,8 @@
+<%= render :partial=>"find_profile_form", :locals=>{:except=>@user.id}%>
 <p>
-Sorry. Friends not implemented, yet.
+<% @user.friends.each do |friend| %>
+  <div class="col-sm-4 friend-list">
+    <%= render :partial=>"users/avatar", :locals=>{:user=>friend}%>
+  </div>
+<% end %>
 </p>

@@ -15,6 +15,8 @@ class User < ActiveRecord::Base
            :dependent=>:destroy)
   has_many :comments
   has_one :validation
+  has_many :user_friends
+  has_many :friends, :through=>:user_friends
 
   after_create :create_validation
 
@@ -99,5 +101,9 @@ class User < ActiveRecord::Base
                         :recipient_id=>self.id,
                         :kind=>Transfer::REVERSE_KINDS).sum(:amount_cents)
     {:receive=>r/100.0,:give=>g/100.0}
+  end
+
+  def is_friend? other
+    self.user_friends.where(:friend_id=>other.id).exists?
   end
 end

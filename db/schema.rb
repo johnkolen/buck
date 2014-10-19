@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141005222452) do
+ActiveRecord::Schema.define(version: 20141018215250) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -75,6 +75,16 @@ ActiveRecord::Schema.define(version: 20141005222452) do
   add_index "transfers", ["comment_at"], name: "index_transfers_on_comment_at", using: :btree
   add_index "transfers", ["recipient_id"], name: "index_transfers_on_recipient_id", using: :btree
   add_index "transfers", ["user_id"], name: "index_transfers_on_user_id", using: :btree
+
+  create_table "user_friends", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "friend_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "user_friends", ["friend_id"], name: "index_user_friends_on_friend_id", using: :btree
+  add_index "user_friends", ["user_id"], name: "index_user_friends_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "first_name"

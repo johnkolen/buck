@@ -40,3 +40,7 @@ $ ->
     else
       $("#password_form .well").remove()
       tgt.html("Change Password"))
+  $("#find-profile").on("submit", ()->
+    tgt = $(this)
+    id = tgt.find("#id").val()
+    tgt.attr('action',tgt.attr('action').replace("#",id)))

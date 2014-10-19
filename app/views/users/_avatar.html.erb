@@ -1,0 +1,12 @@
+<div>
+  <%=link_to show_avatar(user, :medium, :class=>"img-responsive"), user_path(user), :method=>:get%>
+</div>
+<% activity = user.activity %>
+<div class="activity">
+  <% if true || session[:user_id] != user.id %>
+    <h4><%= user.full_name%></h4>
+  <% end %>
+  <span class="receive">$<%=activity[:receive].to_i%></span>
+  &nbsp;
+  <span class="give">$<%=activity[:give].to_i%></span>
+</div>
