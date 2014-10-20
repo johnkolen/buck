@@ -1,0 +1,21 @@
+// Place all the styles related to the messages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.messages {
+    padding-top: 1em;
+    .message {
+	.avatar {
+	    width: 40px;
+	    float: left;
+	}
+	.name {
+	    font-style: italic;
+	    clear: both;
+	}
+    }
+}
+.new-chat-message {
+    #message_content {
+	height: 8em;
+    }
+}

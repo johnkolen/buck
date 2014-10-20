@@ -1,0 +1,5 @@
+<%= form_for(user.messages.build, :remote=>true) do |form| %>
+  <%= form.hidden_field(:user_id)%>
+  <%= form.text_area(:content, :class=>"form-control")%>
+  <%= form.submit("Send", :class=>"form-control btn btn-info") %>
+<% end %>

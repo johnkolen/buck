@@ -1,0 +1,11 @@
+<div class="messages" id="message-list">
+<% messages.each do |message|%>
+  <div class="message">
+    <div class="avatar">
+      <%= link_to show_avatar(message.user, :thumb), message.user %>
+    </div>
+    <%= message.content %>
+    <div class="name"><%= message.user.full_name %></div>
+  </div>
+<% end %>
+</div>

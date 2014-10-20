@@ -1,0 +1,7 @@
+$("#message_content").val("")
+<% content = render :partial=>"messages/list", :locals=>{:messages=>Message.current} %>
+content = $("<%=escape_javascript content %>")
+id = content.attr("id")
+$("#"+id).replaceWith(content)
+<% puts "create.js finished" %>
+

@@ -1,0 +1,5 @@
+<%= form_for(@message||Message.new) do |form| %>
+  <%= edit_fields form do %>
+    <%= message_edit_fields form %>
+  <% end %>
+<% end %>

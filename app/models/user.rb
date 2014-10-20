@@ -17,6 +17,7 @@ class User < ActiveRecord::Base
   has_one :validation
   has_many :user_friends
   has_many :friends, :through=>:user_friends
+  has_many :messages
 
   after_create :create_validation
 

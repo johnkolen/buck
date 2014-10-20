@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :messages
+
   get 'common/hot'
   get 'hot'=>'common#hot'
   get 'common/featured'

@@ -49,7 +49,7 @@ module UsersHelper
   end
 
   def show_avatar user, size=:medium, *opts
-    options = {}
+    options = {:class=>"img-responsive"}
     options.merge! opts.last if opts && opts.last && opts.last.is_a?(Hash)
     image_tag user.avatar.url(size), options
   end

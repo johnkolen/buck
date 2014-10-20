@@ -8,6 +8,10 @@
 	  <%= admin_button %>
 	</p>
       <% end %>
+      <%= render :partial=>"messages/list", :locals=>{:messages=>Message.current} %>
+      <div class="new-chat-message">
+	<%= render :partial=>"messages/form2", :locals=>{:user=>@current_user}%>
+      </div>
     </div>
     <div class="col-sm-8">
       <div class='row text-center pnav'>
