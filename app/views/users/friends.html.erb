@@ -1,10 +1,19 @@
 <%= render :partial=>"find_profile_form", :locals=>{:except=>@user.id}%>
 <div class="friends-list">
+<% count = 0 %>
+<% k = 2 %>
 <% @user.friends.each do |friend| %>
-  <div class="col-sm-6 friend-list">
+  <% if count % k == 0 %>
+    <div class="row">
+  <% end %>
+  <div class="col-sm-<%=12/k%> friend-list">
     <%= render :partial=>"users/avatar", :locals=>{:user=>friend}%>
     <%= send_bucks_button friend%>
   </div>
+  <% if count % k == k - 1 %>
+    </div>
+  <% end %>
+  <% count += 1 %>
 <% end %>
 </div>
 <% @transfer = @user.transfers.build %>
