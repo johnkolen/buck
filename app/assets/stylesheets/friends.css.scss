@@ -1,4 +1,8 @@
+.friends-list {
+    padding-top: 1em;
+}
 .friend-list {
+    margin-bottom: 1em;
     h4 {
 	font-size: 100%;
 	margin-top: 5px;
@@ -11,5 +15,9 @@
 	.receive {
 	    font-size: 100%;
 	}
+    }
+    a.form-control.btn {
+	padding-left: 0px;
+	padding-right: 0px;
     }
 }

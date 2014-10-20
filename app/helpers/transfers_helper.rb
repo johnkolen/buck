@@ -21,7 +21,9 @@ module TransfersHelper
     out << show_field(transfer, :image, image_tag(transfer.image.url(:medium)))
   end
 
-  def transfer_edit_fields form
+  def transfer_edit_fields form, *opts
+    options = {}
+    options.merge! opts.last if opts && opts.last.is_a?(Hash)
     if @admin_page
       out = edit_field form, [:user_id, :recipient_id, :amount, :note]
       image_label =
@@ -52,19 +54,25 @@ module TransfersHelper
                                :kind,
                                :format=>:select,
                                :select_options=>Transfer.kind_options)
-      out << edit_field_simple(form,
-                               :recipient_id,
-                               :format=>:collection_select,
-                               :collection=>[query,
-                                             :id,
-                                             :full_name],
-                               :options=>{:prompt=>"Recipient?"},
-                               :class=>"selectpicker",
-                               :data=>{
-                                 :size=>10,
-                                 :width=>'100%',
-                                 'live-search'=>'true'
-                               })
+      if options[:fixed_recipient]
+        out << form.hidden_field(:recipient_id)
+        name = transfer.recipient_id ? transfer.recipient.full_name : ""
+        out << content_tag(:p, name , :class=>"form-control-static")
+      else
+        out << edit_field_simple(form,
+                                 :recipient_id,
+                                 :format=>:collection_select,
+                                 :collection=>[query,
+                                               :id,
+                                               :full_name],
+                                 :options=>{:prompt=>"Recipient?"},
+                                 :class=>"selectpicker",
+                                 :data=>{
+                                   :size=>10,
+                                   :width=>'100%',
+                                   'live-search'=>'true'
+                                 })
+      end
       out << edit_field_simple(form,
                                :amount,
                                :format=>:select,

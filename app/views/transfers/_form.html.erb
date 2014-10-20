@@ -1,4 +1,4 @@
-<%= form_for(@transfer) do |form| %>
+<%= form_for(@transfer||Transfer.new) do |form| %>
   <%= edit_fields form do %>
     <%= transfer_edit_fields form %>
   <% end %>

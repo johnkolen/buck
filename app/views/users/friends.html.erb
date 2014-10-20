@@ -1,8 +1,11 @@
 <%= render :partial=>"find_profile_form", :locals=>{:except=>@user.id}%>
-<p>
+<div class="friends-list">
 <% @user.friends.each do |friend| %>
-  <div class="col-sm-4 friend-list">
+  <div class="col-sm-6 friend-list">
     <%= render :partial=>"users/avatar", :locals=>{:user=>friend}%>
+    <%= send_bucks_button friend%>
   </div>
 <% end %>
-</p>
+</div>
+<% @transfer = @user.transfers.build %>
+<%= render "transfers/send_modal"%>

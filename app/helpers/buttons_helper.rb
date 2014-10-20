@@ -199,4 +199,10 @@ module ButtonsHelper
   def recent_link
     link_to "Recent", recent_transfers_path, :method=>:get
   end
+  def send_bucks_button user
+    link_to("Send Bucks",
+            "#",
+            :class=>"form-control btn btn-info send-bucks-button",
+            :data=>{:id=>user.id,:name=>user.full_name})
+  end
 end
