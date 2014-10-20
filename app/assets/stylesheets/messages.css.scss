@@ -4,6 +4,8 @@
 .messages {
     padding-top: 1em;
     .message {
+	border-radius: 4px;
+	margin-bottom: 0.5em;
 	.avatar {
 	    width: 40px;
 	    float: left;
