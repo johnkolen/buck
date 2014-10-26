@@ -209,4 +209,10 @@ module ButtonsHelper
             :class=>"form-control btn btn-info send-bucks-button",
             :data=>{:id=>user.id,:name=>user.full_name})
   end
+  def return_to_login_button
+    button_to("Return to Log In",
+              sessions_new_path,
+              :method=>:get,
+              :class=>"form-control btn btn-info")
+  end
 end
