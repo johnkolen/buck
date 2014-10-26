@@ -36,7 +36,7 @@ module NavigationHelper
   def user_navigation *opts
     options = {
       :nav_class=>"user_navigation",
-      :destinations=>[home_link, friends_link, recent_link]
+      :destinations=>[home_link, friends_link, recent_link, logout_link]
     }
     options.merge! opts.last if opts && opts.last.is_a?(Hash)
     li_list = options[:destinations].map do |x|

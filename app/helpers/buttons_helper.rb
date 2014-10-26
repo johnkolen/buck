@@ -199,6 +199,10 @@ module ButtonsHelper
   def recent_link
     link_to "Recent", recent_transfers_path, :method=>:get
   end
+  def logout_link
+    link_to "Logout", sessions_destroy_path, :method => :delete
+  end
+
   def send_bucks_button user
     link_to("Send Bucks",
             "#",
