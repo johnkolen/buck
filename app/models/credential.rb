@@ -17,6 +17,7 @@ class Credential < ActiveRecord::Base
   def has_password?
     #puts "password = #{password}"
     password.present?
+    !password.nil?
   end
 
   def encrypt_password

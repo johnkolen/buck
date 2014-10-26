@@ -5,5 +5,16 @@
     <% if params[:action] == "new" || params[:action] == "create" %>
       <%=password_credential_edit_fields form %>
     <% end %>
+    <% if @user.errors.size > 0 %>
+      <div class="well error-message well-sm">
+      <ul>
+      <% @user.errors.each do |field, msg|%>
+	<% if "credentials".in?(field.to_s) %>
+	  <li><%=msg%></li>
+	<% end %>
+      <% end %>
+      </ul>
+      </div>
+    <% end %>
   <% end %>
 <% end %>
