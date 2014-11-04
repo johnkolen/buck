@@ -1,3 +1,60 @@
 // Place all the styles related to the static_pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.coming-soon {
+    background-color: #CCFFCC;
+    height: 100%;
+    padding-top: 75px;
+    min-hei
+    form {
+	position: relative;
+	z-index: 10;
+    }
+    .message {
+	position: relative;
+	z-index: 10;
+	color: #444C44;
+	background-color: #99FF99;
+	text-align: center;
+	font-size: 28px;
+	font-weight: bold;
+	border-radius: 10px;
+	padding: 10px 20px 10px 20px;
+    }
+    .watermark {
+	position: relative;
+	left: 60%;
+	top: -150px;
+	z-index: 5;
+	height: 0px;
+	opacity: 0.2;
+	img {
+	}
+    }
+    .side-message-container {
+	position: relative;
+	left: 85%;
+	z-index: 20;
+	height: 0px;
+
+    .side-message {
+	color: #444C44;
+	$rot: 90deg;
+	/* Safari */
+	-webkit-transform: rotate($rot);
+	/* Firefox */
+	-moz-transform: rotate($rot);
+	/* IE */
+	-ms-transform: rotate($rot);
+	/* Opera */
+	-o-transform: rotate($rot);
+	transform: rotate($rot);
+	/* Internet Explorer */
+	filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+	transform-origin: top left;
+	font-size: 64px;
+	font-weight: bold;
+    }
+    }
+}

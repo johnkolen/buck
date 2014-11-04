@@ -1,7 +1,9 @@
 // Place all the styles related to the common controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-
+html,body {
+    height: 100%;
+}
 .well.error-message {
     background-color: rgb(242, 222, 222);
     ul {

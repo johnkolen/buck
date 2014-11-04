@@ -1,0 +1,58 @@
+<div class='coming-soon' >
+  <div class='row'>
+    <div class='col-sm-10 col-sm-offset-1'>
+      <%= logo :xlarge %>
+    </div>
+  </div>
+  <div class='watermark'>
+    <%=image_tag "watermark.png" %>
+  </div>
+  <div class='side-message-container'>
+  <div class='side-message'>
+    Coming Soon
+  </div>
+  </div>
+  <%= form_tag coming_soon_path do %>
+    <div class='row'>
+      <div class='col-sm-4 col-sm-offset-4'>
+	<%= email_field_tag :email, '', :class=>"form-control", :placeholder=>"Email Address" %>
+	<%= submit_tag "Get Updates!", :class=>"btn btn-md btn-info form-control" %>
+      </div>
+    </div>
+  <% end %>
+  <div class='row'>
+    <div class='col-sm-6 col-sm-offset-3'>
+      <div class="message">
+	We are developing a new concept in social media by combining
+	traditional profiles with the mobile wallet. We are pioneering
+	a new wave in social media where users can share and promote ideas using
+	real money.
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="email_modal" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidd
+en="true">&times;</span><span class="sr-only">Close</span></button>
+	<h4 class="modal-title">Coming Soon!</h4>
+	<div class="modal-body">
+	  <div class="row">
+	    <div class="col-sm-10 col-sm-offset-1">
+	      Thanks for the email address! We will update you with our progress.
+	    </div>
+	  </div>
+	</div>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<% if @email_address %>
+  <script>
+   $($("#email_modal").modal("show"))
+  </script>
+<% end %>

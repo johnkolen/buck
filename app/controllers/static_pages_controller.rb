@@ -11,4 +11,10 @@ class StaticPagesController < ApplicationController
 
   def admin
   end
+
+  def coming_soon
+    if params[:email]
+      @email_address = EmailAddress.create(:email=>params[:email])
+    end
+  end
 end

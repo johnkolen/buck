@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  namespace :admin do
+    resources :email_addresses
+  end
+
   resources :messages
 
   get 'common/hot'
@@ -14,6 +18,8 @@ Rails.application.routes.draw do
   resources :comments
 
   root 'static_pages#root'
+  get 'coming_soon'=>'static_pages#coming_soon'
+  post 'coming_soon'=>'static_pages#coming_soon'
 
   get 'toc'=>'static_pages#toc'
   get 'about'=>'static_pages#about'

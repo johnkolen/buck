@@ -1,0 +1,26 @@
+<h1>Email Addresses</h1>
+
+<%= paged_search_header admin_email_addresses_path, @email_addresses, :email %>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Email</th>
+      <th>Created At</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @email_addresses.each do |email_address| %>
+      <tr>
+        <td><%= email_address.email %></td>
+        <td><%= email_address.created_at %></td>
+        <td><%= sed_buttons email_address %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= new_button Admin::EmailAddress %>

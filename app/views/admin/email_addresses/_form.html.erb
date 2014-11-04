@@ -1,0 +1,5 @@
+<%= form_for @email_address, :html=>{:multipart=>true} do |form| %>
+  <%= edit_fields form do %>
+    <%=email_address_edit_fields form %>
+  <% end %>
+<% end %>
