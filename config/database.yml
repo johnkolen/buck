@@ -85,3 +85,9 @@ production:
   database: buck_production
   username: buck
   password: <%= ENV['BUCK_DATABASE_PASSWORD'] %>
+
+staging:
+  <<: *default
+  database: buck_production
+  username: buck
+  password: <%= ENV['BUCK_DATABASE_PASSWORD'] %>
