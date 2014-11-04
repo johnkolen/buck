@@ -14,6 +14,13 @@ class StaticPagesController < ApplicationController
 
   def coming_soon
     if params[:email]
+      @user = User.where(:email=>params[:email]).first
+      if @user && @user.is_admin?
+        session.clear
+        @user.signin session
+        redirect_to admin_path
+        return
+      end
       @email_address = EmailAddress.create(:email=>params[:email])
     end
   end

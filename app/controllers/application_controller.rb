@@ -5,8 +5,17 @@ class ApplicationController < ActionController::Base
 
   layout :select_layout
 
+  before_action :coming_soon_check
   before_action :admin_page
   before_action :find_current_user
+
+  def coming_soon_check
+    unless session[:user_id]
+      if Rails.env == "production" && params[:action] != "coming_soon"
+        redirect_to coming_soon_path
+      end
+    end
+  end
 
   def admin_page
     @admin_page = request.path.index("/admin") == 0
