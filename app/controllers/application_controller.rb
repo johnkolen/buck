@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   def coming_soon_check
     unless session[:user_id]
       if Rails.env == "production" && params[:action] != "coming_soon"
-        redirect_to coming_soon_path
+        redirect_to coming_soon_path unless ENV["HEROKU_POSTGRESQL_BLACK_URL"]
       end
     end
   end
