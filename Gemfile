@@ -39,7 +39,7 @@ gem 'spring',        group: :development
 # gem 'debugger', group: [:development, :test]
 
 # Allow Heroku to serve static assets
-gem 'rails_12factor', group: [:production]
+gem 'rails_12factor', group: [:staging, :production]
 
 # Store sessions in database
 gem 'activerecord-session_store', github: 'rails/activerecord-session_store'
