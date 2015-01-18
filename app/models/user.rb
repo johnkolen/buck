@@ -119,6 +119,8 @@ class User < ActiveRecord::Base
   end
 
   def can_transfer_money?
+    vendor = Rails.application.config.payment_vendor
+    return true unless vendor == :venmo
     v = venmo
     (v && v.active? && !v.declined?) || false
   end
