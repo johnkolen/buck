@@ -46,4 +46,7 @@ Rails.application.configure do
       :bucket=>'buck-test'
     }
   }
+
+  # Payment processing vendor
+  config.payment_vendor = (ENV["payment_vendor"] || :dummy).to_sym
 end

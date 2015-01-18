@@ -49,4 +49,6 @@ Rails.application.configure do
   port: port}
   config.action_mailer.delivery_method = :letter_opener
 
+  # Payment processing vendor
+  config.payment_vendor = (ENV["payment_vendor"] || :dummy).to_sym
 end

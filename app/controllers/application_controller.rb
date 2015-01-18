@@ -33,6 +33,21 @@ class ApplicationController < ActionController::Base
 
   def find_current_user
     @current_user = User.find(session[:user_id]) if session[:user_id]
+  rescue ActiveRecord::RecordNotFound
+    redirect_to logout_path if session[:user_id]
+  end
+
+  def ensure_venmo
+    return unless Rails.application.config.payment_vendor == :venmo
+
+    if @current_user &&
+        !(/localhost/ =~ request.original_url) &&
+        !session[:venmo_page] &&
+        (!@current_user.venmo || @current_user.venmo.declined?)
+      url = Payment::Venmo.authorize_url @current_user, request.original_url
+      session[:venmo_page] = true
+      redirect_to url
+    end
   end
 
   def paged_search klass
@@ -51,9 +66,9 @@ class ApplicationController < ActionController::Base
               clause = "users.#{clause} OR recipients_transfers.#{key} LIKE ?"
               vars.push vars.first
             end
-            sp.delete key
             result = result.where([clause, *vars])
           end
+          sp.delete key
         end
         sp.keys.each do |key|
           result = result.where(["#{key} LIKE ?", "%#{sp[key]}%"])

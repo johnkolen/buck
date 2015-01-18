@@ -215,4 +215,9 @@ module ButtonsHelper
               :method=>:get,
               :class=>"form-control btn btn-info")
   end
+  def venmo_button user
+    link_to(image_tag("venmo/venmo_logo_white.png"),
+            Payment::Venmo.authorize_url(user, dashboard_user_path(user)),
+            :class=>"btn-venmo btn")
+  end
 end

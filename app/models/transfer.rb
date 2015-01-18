@@ -19,6 +19,7 @@ class Transfer < ActiveRecord::Base
   belongs_to :user, :inverse_of=>:transfers
   belongs_to :recipient, :class_name=>"User", :inverse_of=>:received_transfers
   has_many :comments
+  has_one :payment, :class_name=>"Payment::Payment"
 
   before_create :initialize_state
   before_create :initialize_comment_at
@@ -51,6 +52,38 @@ class Transfer < ActiveRecord::Base
       self.recipient
     else
       self.user
+    end
+  end
+
+  def payment_source_user
+    if is_pay? || is_failed_bet? || is_pledge?
+      user
+    else
+      recipient
+    end
+  end
+
+  def payment_recipient_user
+    if is_pay? || is_failed_bet? || is_pledge?
+      recipient
+    else
+      user
+    end
+  end
+
+  def payment_state
+    if payment
+      "#{payment.vendor}:#{payment.state_str}"
+    else
+      "no payment"
+    end
+  end
+
+  def payment_log
+    if payment
+      payment.logs.map {|log| [log.created_at, log.message]}
+    else
+      []
     end
   end
 
@@ -235,10 +268,6 @@ class Transfer < ActiveRecord::Base
     self.state = (self.state & ~RECIPIENT_MASK) | (x.to_i << RECIPIENT_SHIFT)
   end
 
-  def move_money
-    #TODO: initiate transfer
-  end
-
   def update_complete uid
     return if finalized?
     if self.recipient_id == uid
@@ -247,7 +276,7 @@ class Transfer < ActiveRecord::Base
       user_completed!.save
     end
     # only move money on transition
-    move_money if completed?
+    initiate_payment if completed?
   end
 
   def update_accept uid
@@ -256,7 +285,7 @@ class Transfer < ActiveRecord::Base
       if self.is_unconditional?
         completed!
         save
-        move_money
+        initiate_payment
       else
         recipient_pending!.save
       end
@@ -286,7 +315,7 @@ class Transfer < ActiveRecord::Base
         user_failed!.save
       end
     end
-    move_money if self.failed?
+    initiate_payment if self.failed?
   end
 
   # Image
@@ -321,6 +350,13 @@ class Transfer < ActiveRecord::Base
   before_save :update_comment_at
   def update_comment_at
     self.comment_at = Time.now
+  end
+
+  def initiate_payment
+    return unless completed?
+    vendor = Rails.application.config.payment_vendor
+    self.payment = Payment::Payment.create_by_vendor vendor
+    self.payment.initiate
   end
 end
 

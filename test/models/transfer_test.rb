@@ -121,4 +121,11 @@ class TransferTest < ActiveSupport::TestCase
     assert_equal("Recipient can't be self.",
                  @transfer.errors[:recipient_id].first)
   end
+
+  test "initiate_payment" do
+    @transfer = Transfer.create(create_params)
+    @transfer.completed!
+    @transfer.initiate_payment
+    assert @transfer.payment(true)
+  end
 end

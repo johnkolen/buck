@@ -9,3 +9,19 @@ bob:
   first_name: Bob
   last_name: Barker
   email: bob@mail.com
+
+venmo_sandbox:
+  first_name: Venmo
+  last_name: Sandbox
+  email: venmo@venmo.com
+
+venmo_live_1:
+  first_name: One
+  last_name: Venmo
+  email: test1@betuabuck.com
+
+venmo_live_2:
+  first_name: Two
+  last_name: Venmo
+  email: test2@betuabuck.com
+

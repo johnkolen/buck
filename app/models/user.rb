@@ -18,6 +18,7 @@ class User < ActiveRecord::Base
   has_many :user_friends
   has_many :friends, :through=>:user_friends
   has_many :messages
+  has_many :venmo_users
 
   after_create :create_validation
 
@@ -106,5 +107,19 @@ class User < ActiveRecord::Base
 
   def is_friend? other
     self.user_friends.where(:friend_id=>other.id).exists?
+  end
+
+  def venmo
+    venmo_users.first
+  end
+
+  def venmo_active?
+    v = venmo
+    (v && v.active?) || false
+  end
+
+  def can_transfer_money?
+    v = venmo
+    (v && v.active? && !v.declined?) || false
   end
 end

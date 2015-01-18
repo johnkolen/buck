@@ -60,6 +60,7 @@ module EditHelper
     when :select
       form.select(field,
                   options_for_select(options[:select_options],
+                                     options[:select_value] ||
                                      form.object.send(field)),
                   options[:options] || {},
                   :data=>options[:data],

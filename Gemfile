@@ -71,3 +71,9 @@ gem 'letter_opener', :group=>[:development]
 
 # better select boxes
 gem 'bootstrap-select-rails'
+
+# REST requests
+gem 'rest-client'
+
+# Test mocking
+gem 'mocha', :group=>:test

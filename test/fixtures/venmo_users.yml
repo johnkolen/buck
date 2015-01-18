@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+alan:
+  user: alan
+  access_token: hExGbsQgw5bxjJc8DZhQdLVsFfv2ZbvS
+  access_token_updated_at: <%=Time.now%>
+  access_token_expires_at: <%=Time.now + 60.days%>
+
+venmo_sandbox:
+  user: venmo_sandbox
+  venmo_id: "145434160922624933"
+
+venmo_live_1:
+  user: venmo_live_1
+  access_token: TBA
+  access_token_updated_at: <%=Time.now%>
+  access_token_expires_at: <%=Time.now + 60.days%>
+
+venmo_live_2:
+  user: venmo_live_2
+  access_token: TBA
+  access_token_updated_at: <%=Time.now%>
+  access_token_expires_at: <%=Time.now + 60.days%>

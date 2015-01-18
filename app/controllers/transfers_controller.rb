@@ -35,16 +35,27 @@ class TransfersController < ApplicationController
   # POST /transfers
   # POST /transfers.json
   def create
+    unless @current_user.can_transfer_money?
+      redirect_to venmo_declined_path
+      return
+    end
+
     @transfer = Transfer.new(transfer_params)
 
     respond_to do |format|
-      if @transfer.save!
+      if @transfer.save
+        @transfer.initiate_payment
         notice = "Money sent to #{@transfer.recipient.first_name}"
         format.html { redirect_to(dashboard_user_path(@transfer.user),
                                   :notice=>notice)}
         format.json { render :show, status: :created, location: @transfer }
       else
-        format.html { redirect_to dashboard_user_path(@transfer.user_id), notice: 'Failed' }
+        format.html do
+          a = @transfer.attributes
+          a[:error_messages] = @transfer.errors.messages
+          flash[:transfer] = Marshal.dump(a)
+          redirect_to dashboard_user_path(@transfer.user_id)
+        end
         format.json { render json: @transfer.errors, status: :unprocessable_entity }
       end
     end

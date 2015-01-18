@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'hooks/venmo'
+  get 'callback/venmo'
+  post 'callback/venmo'
+
   namespace :admin do
     resources :email_addresses
   end
@@ -24,6 +28,7 @@ Rails.application.routes.draw do
   get 'toc'=>'static_pages#toc'
   get 'about'=>'static_pages#about'
   get 'admin'=>'static_pages#admin'
+  get 'venmo_declined'=>"static_pages#venmo_declined"
 
   namespace :admin do
     resources :users
@@ -71,6 +76,7 @@ Rails.application.routes.draw do
   get 'sessions/new'
   post 'sessions/create'
   delete 'sessions/destroy'
+  get 'logout' => 'sessions#destroy'
   post 'sessions/impersonate'
 
   # The priority is based upon order of creation: first created -> highest priority.

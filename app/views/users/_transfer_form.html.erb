@@ -1,4 +1,5 @@
-<%= form_for(@user.transfers.build) do |form| %>
+<% t = @transfer || @user.transfers.build %>
+<%= form_for(t) do |form| %>
   <%= edit_fields form, :label=>"Send Money" do %>
     <%=transfer_edit_fields form %>
   <% end %>

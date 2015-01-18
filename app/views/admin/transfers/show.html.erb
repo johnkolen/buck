@@ -2,6 +2,9 @@
   <div class=row>
     <%= show_fields @transfer do %>
       <%= transfer_fields @transfer %>
+      <%= show_field @transfer, "Payment State", @transfer.payment_state %>
+      <% log = safe_join @transfer.payment_log.map{|t,m| "#{t}<br>#{m}<br>".html_safe}%>
+      <%= show_field @transfer, "Payment Log", log %>
     <% end %>
     <%= show_navigation @transfer %>
   </div>

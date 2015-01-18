@@ -6,6 +6,13 @@ class UsersController < ApplicationController
                                              :validate,
                                              :forgot_password,
                                              :temp_password]
+  before_action :ensure_venmo, :except=>[:new,
+                                       :create,
+                                       :pending_validation,
+                                       :resend_validation,
+                                       :validate,
+                                       :forgot_password,
+                                       :temp_password]
   before_action :set_user, only: [:show, :edit, :update,
                                   :dashboard, :dashboard_transfer_list,
                                   :friends,
@@ -107,6 +114,14 @@ class UsersController < ApplicationController
   end
 
   def dashboard
+    transfer_params = flash[:transfer]
+    if transfer_params
+      # load params for failed
+      transfer_params = Marshal.load(transfer_params)
+      em = transfer_params.delete :error_messages
+      @transfer = Transfer.new transfer_params
+      em.each { |k,v| @transfer.errors.add k,v }
+    end
     render :layout=>"layouts/common"
   end
 

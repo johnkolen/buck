@@ -18,7 +18,12 @@ module TransfersHelper
     out << show_field(transfer, :note)
     out << show_field(transfer, :kind, transfer.kind_str)
     out << show_field(transfer, :state, transfer.state_str)
-    out << show_field(transfer, :image, image_tag(transfer.image.url(:medium)))
+    if transfer.image.exists?
+      out << show_field(transfer,
+                        :image_x,
+                        image_tag(transfer.image.url(:medium)))
+    end
+    out
   end
 
   def transfer_edit_fields form, *opts
@@ -76,6 +81,7 @@ module TransfersHelper
       out << edit_field_simple(form,
                                :amount,
                                :format=>:select,
+                               :select_value=>(transfer.amount || 1).to_i,
                                :select_options=>transfer_amounts)
       out << edit_field_simple(form, :note, :placeholder=>"For?")
       image_label =

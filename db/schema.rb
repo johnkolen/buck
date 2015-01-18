@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141104041018) do
+ActiveRecord::Schema.define(version: 20150118204124) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,24 @@ ActiveRecord::Schema.define(version: 20141104041018) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "payment_logs", force: true do |t|
+    t.integer  "payment_id"
+    t.text     "message"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "payment_payments", force: true do |t|
+    t.integer  "transfer_id"
+    t.integer  "state",        default: 0
+    t.string   "vendor_class"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "attempts",     default: 0
+    t.datetime "retry_at"
+    t.string   "vendor_id"
   end
 
   create_table "sessions", force: true do |t|
@@ -127,5 +145,17 @@ ActiveRecord::Schema.define(version: 20141104041018) do
 
   add_index "validations", ["key"], name: "index_validations_on_key", using: :btree
   add_index "validations", ["user_id"], name: "index_validations_on_user_id", using: :btree
+
+  create_table "venmo_users", force: true do |t|
+    t.integer  "user_id"
+    t.string   "venmo_id"
+    t.string   "access_token"
+    t.datetime "access_token_updated_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.datetime "access_token_expires_at"
+    t.string   "refresh_token"
+    t.boolean  "declined",                default: false
+  end
 
 end

@@ -1,0 +1,7 @@
+<div class="col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4">
+<h1>Venmo Declined</h1>
+<p>Since you have declined using Venmo, you can still use Bet U A Buck. However, you will not be able to make transactions. You will be asked to verify your decision each time you login.
+</p>
+<%= link_to "Continue to Dashboard", dashboard_user_path(@current_user), :class=>"btn btn-info"%>
+<%= venmo_button @current_user%>
+</div>
