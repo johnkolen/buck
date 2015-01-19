@@ -3,8 +3,14 @@ ruby ENV['BUNDLE_RUBY_VERSION'] || '2.1.2'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.6'
-# Use postgresql as the database for Active Record
-gem 'pg'
+
+if ENV['RDS_DB_NAME']
+  # Use mysql2 as the database for Active Record
+  gem 'mysql2'
+else
+  # Use postgresql as the database for Active Record
+  gem 'pg'
+end
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
