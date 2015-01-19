@@ -2,7 +2,7 @@ class Payment::Venmo < Payment::Payment
   def vendor
     "Venmo"
   end
-  ACCESS_TOKEN = "hExGbsQgw5bxjJc8DZhQdLVsFfv2ZbvS"
+
   if Rails.env == "production"
     CLIENT_ID = 2219
     CLIENT_SECRET = "3nN6usT77kyxjVXQH8RTYVqkWrzkDGR5"

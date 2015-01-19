@@ -93,7 +93,7 @@ Rails.application.configure do
     :storage => :s3,
     :url=>":s3_domain_url",
     :s3_credentials => {
-      :bucket=>'buck-production',
+      :bucket=>'betuabuck-production',
       :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
       :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
     }
