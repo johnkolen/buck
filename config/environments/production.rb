@@ -67,7 +67,7 @@ Rails.application.configure do
     address:              'smtp.gmail.com',
     port:                 587,
     user_name:            'support@betuabuck.com',
-    password:             'patchedshuttlepace',
+    password:             ENV['MAILER_PASSWORD'],
     authentication:       'plain',
     enable_starttls_auto: true
   }
