@@ -4,8 +4,10 @@ class Payment::Venmo < Payment::Payment
   end
 
   if Rails.env == "production"
-    CLIENT_ID = 2219
-    CLIENT_SECRET = "3nN6usT77kyxjVXQH8RTYVqkWrzkDGR5"
+    #CLIENT_ID = 2219
+    #CLIENT_SECRET = "3nN6usT77kyxjVXQH8RTYVqkWrzkDGR5"
+    CLIENT_ID = 2305
+    CLIENT_SECRET = "nmVAxSumgGJsnpyDmxgkFUvHsMD587pU"
   else
     CLIENT_ID = 2221
     CLIENT_SECRET = "tJ3E29PLbYGbRQGCCpJtDwBtXjYBzz76"
