@@ -76,6 +76,7 @@ Rails.application.routes.draw do
   get 'sessions/new'
   post 'sessions/create'
   delete 'sessions/destroy'
+  get 'login' => 'sessions#new'
   get 'logout' => 'sessions#destroy'
   post 'sessions/impersonate'
 
