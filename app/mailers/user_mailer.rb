@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  default from: "support@betabuck.com"
+  default from: "support@betuabuck.com"
 
   def validation user
     @user = user
