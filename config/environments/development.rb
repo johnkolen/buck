@@ -51,4 +51,22 @@ Rails.application.configure do
 
   # Payment processing vendor
   config.payment_vendor = (ENV["payment_vendor"] || :dummy).to_sym
+
+  #email debuging
+  if ENV['MAILER_PASSWORD']
+    config.action_mailer.default_url_options = {
+      host: 'https://www.betuabuck.com'
+    }
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.perform_deliveries = true
+    config.action_mailer.raise_delivery_errors = true
+    config.action_mailer.smtp_settings = {
+      address:              'smtp.gmail.com',
+      port:                 587,
+      user_name:            'support@betuabuck.com',
+      password:             ENV['MAILER_PASSWORD'],
+      authentication:       'plain',
+      enable_starttls_auto: true
+    }
+  end
 end
