@@ -3,7 +3,6 @@
     <div class=row>
       <%= logo :large %>
     </div>
-
     <%= form_tag sessions_create_path do %>
       <div class=row>
 	<%= text_field_tag(:email,
@@ -17,6 +16,13 @@
 			       :class=>"form-control",
 			       :placeholder=>"Password") %>
       </div>
+      <% if flash[:notice] %>
+	<div class=row>
+	  <div class="well error-message">
+	    <%= flash[:notice]%>
+	  </div>
+	</div>
+      <% end %>
       <div class=row>
 	<%= submit_tag 'Log In', :class=>"form-control btn btn-md btn-info" %>
       </div>

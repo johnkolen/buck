@@ -7,6 +7,7 @@ class SessionsController < ApplicationController
 
   def create
     @user = User.find_by(:email=>params[:email])
+    session[:user_id] = nil if session[:user_id]
     respond_to do |format|
       if @user && @user.credentials_ok?(:password=>params[:password])
         session.clear
@@ -14,7 +15,8 @@ class SessionsController < ApplicationController
         format.html { redirect_to dashboard_user_path(@user) }
       else
         session[:login_attempts] = (session[:login_attempts] || 0) + 1
-        format.html { redirect_to :action=>:new }
+        flash[:notice] = "Email or password not found."
+        format.html { redirect_to login_path }
       end
     end
   end
