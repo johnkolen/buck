@@ -51,6 +51,7 @@ class UsersController < ApplicationController
   # GET /users/new
   def new
     @user = User.new
+    session[:invitation_key] = params[:key] if params[:key]
   end
 
   # GET /users/1/edit
@@ -64,6 +65,12 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
+        if session[:invitation_key]
+          invitation = Invitation.where(:key=>session[:invitation_key]).first
+          if invitation
+            invitation.update_attribute(:signup_id, @user.id)
+          end
+        end
         session.clear
         @user.signin session
         UserMailer.validation(@user).deliver

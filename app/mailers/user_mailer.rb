@@ -10,6 +10,16 @@ class UserMailer < ActionMailer::Base
     end
   end
 
+  def invitation invite
+    @invitation = invite
+    @user = invite.user
+    change_default_host signup_url(@user) do
+      mail(:to=>@invitation.email,
+           :cc=>@user.email,
+           :subject=>"Invitation to Join Bet U A Buck")
+    end
+  end
+
   def temp_password user, password
     @user = user
     @password = password

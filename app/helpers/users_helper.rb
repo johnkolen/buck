@@ -2,7 +2,8 @@ module UsersHelper
   def user_fields user
     out = show_field user, [:first_name, :last_name, :email]
     out << show_field(user, :is_admin) if @admin_page
-    out << show_field( user, [:time_zone, :created_at])
+    out << show_field(user, [:time_zone, :created_at])
+    out << show_field(user, :invitations, invitation_list(user.invitations))
   end
 
   def user_edit_fields form

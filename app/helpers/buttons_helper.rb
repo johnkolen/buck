@@ -220,4 +220,15 @@ module ButtonsHelper
             Payment::Venmo.authorize_url(user, dashboard_user_path(user)),
             :class=>"btn-venmo btn")
   end
+  def modal_button target, msg
+    content_tag(:button,
+                msg,
+                :id=>"#{target}_modal_button",
+                :class=>"btn btn-default btn-info",
+                :data=>{:toggle=>"modal", :target=>"##{target}_modal"})
+  end
+
+  def invitation_modal_button
+    modal_button 'invitation', "Invite"
+  end
 end

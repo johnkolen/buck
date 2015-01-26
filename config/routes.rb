@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources 'invitations'
+
   get 'hooks/venmo'
   get 'callback/venmo'
   post 'callback/venmo'
@@ -78,6 +80,7 @@ Rails.application.routes.draw do
   delete 'sessions/destroy'
   get 'login' => 'sessions#new'
   get 'logout' => 'sessions#destroy'
+  get 'signup' => 'users#new'
   post 'sessions/impersonate'
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -1,0 +1,11 @@
+<%= form_for @invitation||@current_user.invitations.build, :html=>{:multipart=>true}, :remote=>true do
+|form| %>
+<div class="modal-body">
+  <%=invitation_edit_fields form %>
+  <%= form.hidden_field :user_id %>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+  <%=form.submit "Send", :class=>"btn button-default btn-info"%>
+</div>
+<% end %>

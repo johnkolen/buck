@@ -19,6 +19,7 @@ class User < ActiveRecord::Base
   has_many :friends, :through=>:user_friends
   has_many :messages
   has_many :venmo_users
+  has_many :invitations
 
   after_create :create_validation
 

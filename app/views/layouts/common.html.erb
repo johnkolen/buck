@@ -13,6 +13,7 @@
 	  <%= admin_button %>
 	</p>
       <% end %>
+      <%= invitation_modal_button %>
       <%= render :partial=>"messages/list", :locals=>{:messages=>Message.current} %>
       <div class="new-chat-message">
 	<%= render :partial=>"messages/form2", :locals=>{:user=>@current_user}%>
@@ -25,3 +26,4 @@
 </div>
 <% end %>
 <%= render template: "layouts/application" %>
+<%= render "invitations/modal" %>
