@@ -14,5 +14,6 @@ class UserMailerTest < ActionMailer::TestCase
     assert_equal "Email Validation", email.subject
     body = email.body.to_s
     assert_match /footer/, body
+    assert_match /https:\/\//, body
   end
 end

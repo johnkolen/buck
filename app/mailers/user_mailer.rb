@@ -1,4 +1,6 @@
 class UserMailer < ActionMailer::Base
+  add_template_helper(ApplicationHelper)
+
   default from: "support@betuabuck.com"
 
   def validation user
@@ -20,16 +22,24 @@ class UserMailer < ActionMailer::Base
   def change_default_host url
     return yield unless url
     uri = URI(url)
+    @protocol = uri.scheme
     @host = uri.host
     @port = uri.port
+    old_protocol = self.default_url_options[:protocol]
     old_host = self.default_url_options[:host]
     old_port = self.default_url_options[:port]
+    self.default_url_options[:protocol]=@protocol
     self.default_url_options[:host]=@host
     self.default_url_options[:port]=@port
     result = yield
+    self.default_url_options[:protocol]=old_protocol
     self.default_url_options[:host]=old_host
-    self.default_url_options.delete(:port)
-    self.default_url_options[:port] = old_port if old_port
+    if old_port
+      self.default_url_options[:port] = old_port
+    else
+      self.default_url_options.delete(:port)
+    end
+      
     result
   end
 

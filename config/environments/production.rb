@@ -60,8 +60,10 @@ Rails.application.configure do
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
   config.action_mailer.default_url_options = {
-    host: 'https://www.betuabuck.com'
+    protocol: 'https'
+    host: 'www.betuabuck.com'
   }
+  config.action_mailer.asset_host = "https://www.betuabuck.com"
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true

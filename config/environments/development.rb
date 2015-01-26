@@ -47,6 +47,8 @@ Rails.application.configure do
   port = Rails::Server.new.options[:Port] if defined? Rails::Server
   config.action_mailer.default_url_options = { host: 'localhost',
   port: port}
+  config.action_mailer.asset_host = "http://localhost:#{port}"
+
   config.action_mailer.delivery_method = :letter_opener
 
   # Payment processing vendor
@@ -55,7 +57,8 @@ Rails.application.configure do
   #email debuging
   if ENV['MAILER_PASSWORD']
     config.action_mailer.default_url_options = {
-      host: 'https://www.betuabuck.com'
+      protocol: 'https',
+      host: 'www.betuabuck.com'
     }
     config.action_mailer.delivery_method = :smtp
     config.action_mailer.perform_deliveries = true

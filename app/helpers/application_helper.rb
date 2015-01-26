@@ -1,6 +1,6 @@
 module ApplicationHelper
   def app_name
-    "Buck Up"
+    "Bet U A Buck"
   end
 
   def logo size
