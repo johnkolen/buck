@@ -1,0 +1,27 @@
+#!/usr/bin/env ruby
+myapp = ARGV.shift || "buck"
+usrnm = ARGV.shift || ARGV[0] || "buck_user"
+usrpw = ARGV.shift || "buck_password"
+
+unless myapp
+  puts "usage:\n\tmakedb appname [username [password environment*]"
+  puts "\nCreates mysql databases:"
+  puts "\tappname_development"
+  puts "\tappname_test"
+  puts "\tappname_production"
+  puts "These databases will be accessible by username with the provided\n"
+  puts "password. Username and password default to the application name."
+  puts "You will be prompted for mysql root passowrd to create the databases."
+  exit
+end
+
+dbs = ARGV.empty? ? ['development','test','production'] : ARGV
+
+cmd = "mysql -p -u root <<EOS\n"
+dbs.each do |lvl|
+  cmd << "CREATE DATABASE #{myapp}_#{lvl};\n"
+  cmd << "GRANT ALL PRIVILEGES ON #{myapp}_#{lvl}.* to '#{usrnm}'@'localhost' IDENTIFIED BY '#{usrpw}' WITH GRANT OPTION;\n"
+end
+cmd << "EOS\n"
+puts cmd
+`#{cmd}`

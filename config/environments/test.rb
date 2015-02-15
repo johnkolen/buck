@@ -29,7 +29,10 @@ Rails.application.configure do
   # Tell Action Mailer not to deliver emails to the real world.
   # The :test delivery method accumulates sent emails in the
   # ActionMailer::Base.deliveries array.
-  config.action_mailer.default_url_options = { host: 'https://betuabuck.com' }
+  config.action_mailer.default_url_options = {
+    protocol: 'https',
+    host: 'betuabuck.com'
+  }
   config.action_mailer.delivery_method = :test
 
   # Print deprecation notices to the stderr.
@@ -48,5 +51,5 @@ Rails.application.configure do
   }
 
   # Payment processing vendor
-  config.payment_vendor = (ENV["payment_vendor"] || :dummy).to_sym
+  config.payment_vendor = (ENV["PAYMENT_VENDOR"] || :dummy).to_sym
 end

@@ -36,7 +36,7 @@ class TransfersController < ApplicationController
   # POST /transfers.json
   def create
     unless @current_user.can_transfer_money?
-      redirect_to venmo_declined_path
+      redirect_to vendor_declined_path
       return
     end
 

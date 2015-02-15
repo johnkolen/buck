@@ -6,7 +6,7 @@ class UsersController < ApplicationController
                                              :validate,
                                              :forgot_password,
                                              :temp_password]
-  before_action :ensure_venmo, :except=>[:new,
+  before_action :ensure_paypal, :except=>[:new,
                                        :create,
                                        :pending_validation,
                                        :resend_validation,

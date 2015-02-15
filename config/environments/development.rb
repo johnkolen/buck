@@ -52,7 +52,7 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :letter_opener
 
   # Payment processing vendor
-  config.payment_vendor = (ENV["payment_vendor"] || :dummy).to_sym
+  config.payment_vendor = (ENV["PAYMENT_VENDOR"] || :dummy).to_sym
 
   #email debuging
   if ENV['MAILER_PASSWORD']

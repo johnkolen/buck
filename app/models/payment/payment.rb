@@ -8,11 +8,14 @@ class Payment::Payment < ActiveRecord::Base
            :foreign_key=>"payment_id",
            :dependent=>:delete_all)
 
+  scope :pending_approval, -> { where(:state=>STATES[:approval]) }
+
   STATES = {
     :start=> 0,
     :sent=>100,
     :timed_out=>130,
     :received=>200,
+    :approval=>300,
     :completed=>900,
     :failed=>999
   }
@@ -47,6 +50,7 @@ class Payment::Payment < ActiveRecord::Base
     "NONE"
   end
   def self.create_by_vendor sym, params={}
+    sym = :pay_pal if sym == :paypal
     eval("Payment::#{sym.to_s.classify}").create params
   end
   def vendor_timed_out

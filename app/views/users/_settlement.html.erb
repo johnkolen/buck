@@ -1,0 +1,5 @@
+<% if @current_user.has_payments_for_approval? %>
+  <div class="row">
+    <%= settlement_modal_button %>
+  </div>
+<% end %>

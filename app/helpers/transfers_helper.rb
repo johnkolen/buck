@@ -55,8 +55,8 @@ module TransfersHelper
       out = form.hidden_field(:user_id)
       transfer = form.object
       query = User.where.not(:id=>transfer.user_id)
-      query = query.includes(:venmo_users).all.to_a.
-        delete_if{|x| !x.can_transfer_money?}
+      query = query.includes(:paypal_users).all.to_a.
+        delete_if{|x| !x.can_receive_money? }
       out << edit_field_simple(form,
                                :kind,
                                :format=>:select,

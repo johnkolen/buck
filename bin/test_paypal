@@ -1,0 +1,22 @@
+#!/usr/bin/env ruby
+
+rootpath = File.expand_path(File.join(File.dirname(__FILE__), '..'))
+envpath = File.expand_path(File.join(rootpath, 'config', 'environment'))
+ENV["RAILS_ENV"] ||= 'development'
+require envpath
+
+u1 = User.where(:email=>'paypal_test_1@betuabuck.com').first
+u2 = User.where(:email=>'paypal_test_2@betuabuck.com').first
+
+s = <<EOS
+PAYPAL_ACCESS_TOKEN_1=#{u1.paypal.access_token} \\
+PAYPAL_ACCESS_TOKEN_2=#{u2.paypal.access_token} \\
+ruby -Itest test/models/payment/paypal_live_test.rb 2>&1
+EOS
+
+puts s
+system s
+
+
+
+

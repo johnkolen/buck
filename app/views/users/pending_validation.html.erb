@@ -6,13 +6,13 @@
   see an email from us, check your spam folder.
 </p>
 <%= link_to "Resend", resend_validation_user_path(@user), :class=>"btn btn-info" %>
-<% unless @user.venmo %>
+<% unless @user.paypal %>
 <br>
 <p>
-  Bet U A Buck uses Venmo for payment processing. Please signup for an account
+  Bet U A Buck uses PayPal for payment processing. Please signup for an account
   at your earliest convienence.
 </p>
-<%= venmo_button @user %>
+<%= paypal_button @user %>
 </p>
 <% end %>
 </div>

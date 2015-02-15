@@ -220,6 +220,11 @@ module ButtonsHelper
             Payment::Venmo.authorize_url(user, dashboard_user_path(user)),
             :class=>"btn-venmo btn")
   end
+  def paypal_button user
+    link_to("PayPal",
+            Payment::PayPal.authorize_url(user, dashboard_user_path(user)),
+            :class=>"btn-venmo btn")
+  end
   def modal_button target, msg
     content_tag(:button,
                 msg,
@@ -230,5 +235,15 @@ module ButtonsHelper
 
   def invitation_modal_button
     modal_button 'invitation', "Invite"
+  end
+
+  def settlement_modal_button
+    modal_button('settlement', "Settle Up!")
+  end
+
+  def payment_approval_button
+    urls = Payment::PayPal.approval_urls @current_user.payments_for_approval
+    img = image_tag "https://www.paypalobjects.com/en_US/i/btn/x-click-but6.gif"
+    link_to img, urls.first
   end
 end

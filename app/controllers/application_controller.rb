@@ -38,15 +38,17 @@ class ApplicationController < ActionController::Base
     redirect_to logout_path if session[:user_id]
   end
 
-  def ensure_venmo
-    return unless Rails.application.config.payment_vendor == :venmo
+  def ensure_paypal
+    return unless Rails.application.config.payment_vendor == :paypal
 
     if @current_user &&
         !(/localhost/ =~ request.original_url) &&
-        !session[:venmo_page] &&
-        (!@current_user.venmo || @current_user.venmo.declined?)
-      url = Payment::Venmo.authorize_url @current_user, request.original_url
-      session[:venmo_page] = true
+        !session[:paypal_page] &&
+        (!@current_user.paypal ||
+         @current_user.paypal.declined? ||
+         !@current_user.paypal.active?)
+      url = Payment::PayPal.authorize_url @current_user, request.original_url
+      session[:paypal_page] = true
       redirect_to url
     end
   end

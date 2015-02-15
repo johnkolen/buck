@@ -3,7 +3,9 @@
     <h3><%= flash[:notice] %></h3>
   </div>
 <% end %>
+<%= render :partial=>"settlement" %>
 <%= render :partial=>"transfer_form" %>
 <div class=row>
 <%= render :partial=>"transfer_list"%>
 </div>
+<%= render :partial=>"settlement_modal" %>

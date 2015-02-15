@@ -2,9 +2,14 @@ Rails.application.routes.draw do
 
   resources 'invitations'
 
-  get 'hooks/venmo'
   get 'callback/venmo'
   post 'callback/venmo'
+  get 'callback/paypal'
+  post 'callback/paypal'
+  get 'callback/paypal_auth'
+  post 'callback/paypal_auth'
+  get 'callback/paypal_cancel'
+  get 'callback/paypal_return'
 
   namespace :admin do
     resources :email_addresses
@@ -31,6 +36,9 @@ Rails.application.routes.draw do
   get 'about'=>'static_pages#about'
   get 'admin'=>'static_pages#admin'
   get 'venmo_declined'=>"static_pages#venmo_declined"
+  get 'paypal_declined'=>"static_pages#paypal_declined"
+  vendor = Rails.application.config.payment_vendor || 'paypal'
+  get 'vendor_declined'=>"static_pages##{vendor}_declined"
 
   namespace :admin do
     resources :users

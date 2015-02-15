@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
-ruby ENV['BUNDLE_RUBY_VERSION'] || '2.1.2'
+ruby '2.1.2'
+# ruby ENV['BUNDLE_RUBY_VERSION'] || '2.1.2'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.6'
@@ -9,7 +10,8 @@ if ENV['RDS_DB_NAME']
   gem 'mysql2'
 else
   # Use postgresql as the database for Active Record
-  gem 'pg'
+  gem 'pg', :group=>:staging
+  gem 'mysql2', :group=>[:development, :test]
 end
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
@@ -83,3 +85,8 @@ gem 'rest-client'
 
 # Test mocking
 gem 'mocha', :group=>:test
+
+# Paypal
+gem 'paypal-sdk-rest', "~>1.1"
+gem 'paypal-sdk-adaptivepayments'
+#gem 'paypal-sdk-permissions'

@@ -19,6 +19,7 @@ class User < ActiveRecord::Base
   has_many :friends, :through=>:user_friends
   has_many :messages
   has_many :venmo_users
+  has_many :paypal_users
   has_many :invitations
 
   after_create :create_validation
@@ -119,10 +120,59 @@ class User < ActiveRecord::Base
     (v && v.active?) || false
   end
 
+  def paypal
+    paypal_users.first
+  end
+
+  def paypal_active?
+    v = paypal
+    (v && v.active?) || false
+  end
+
+  def can_receive_money?
+    vendor = Rails.application.config.payment_vendor
+    case vendor
+    when :venmo
+      v = venmo
+      (v && v.can_receive_money?) || false
+    when :paypal
+      v = paypal
+      (v && v.can_receive_money?) || false
+    else
+      true
+    end
+  end
+
   def can_transfer_money?
     vendor = Rails.application.config.payment_vendor
-    return true unless vendor == :venmo
-    v = venmo
-    (v && v.active? && !v.declined?) || false
+    case vendor
+    when :venmo
+      v = venmo
+      (v && v.active? && !v.declined?) || false
+    when :paypal
+      v = paypal
+      (v && v.active? && !v.declined?) || false
+    else
+      true
+    end
+  end
+
+  def has_payments_for_approval?
+    payments_for_approval_query.each do |p|
+      return true if p.transfer.payment_source_user_id == id
+    end
+    false
+  end
+  def payments_for_approval
+      payments_for_approval_query.
+      to_a.
+      delete_if {|p| p.transfer.payment_source_user_id != id}
+  end
+  def payments_for_approval_query
+    Payment::Payment.
+      pending_approval.
+      joins(:transfer).
+      includes(:transfer).
+      where(["(transfers.user_id = ? OR transfers.recipient_id = ?)", id, id])
   end
 end

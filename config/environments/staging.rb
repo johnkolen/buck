@@ -101,5 +101,5 @@ Rails.application.configure do
   }
 
   # Payment processing vendor
-  config.payment_vendor = (ENV["payment_vendor"] || :dummy).to_sym
+  config.payment_vendor = (ENV["PAYMENT_VENDOR"] || :dummy).to_sym
 end

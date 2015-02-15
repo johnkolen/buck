@@ -1,6 +1,6 @@
 class StaticPagesController < ApplicationController
-  skip_before_filter :ensure_venmo
-  before_filter :find_current_user, :only=>:venmo_declined
+  skip_before_filter :ensure_paypal
+  before_filter :find_current_user, :only=>:paypal_declined
 
   def root
     redirect_to dashboard_user_path(session[:user_id]) if session[:user_id]

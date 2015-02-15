@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
   skip_before_filter :find_current_user
-  skip_before_filter :ensure_venmo
+  skip_before_filter :ensure_paypal
 
   def new
   end

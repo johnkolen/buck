@@ -7,10 +7,10 @@
       <%= show_fields @user do %>
         <%= user_fields @user %>
 	<%= show_field @user, :credentials, @user.credential_type_list%>
-	<%= show_field @user, :venmo_signup, @user.venmo_active?%>
-	<% if @user.venmo %>
-  	  <%= show_field @user, :venmo_declined, @user.venmo.declined?%>
-	  <%= show_field @user, :venmo_token_expires, @user.venmo.access_token_expires_at || "missing expiration" %>
+	<%= show_field @user, :paypal_signup, @user.paypal_active?%>
+	<% if @user.paypal %>
+  	  <%= show_field @user, :paypal_declined, @user.paypal.declined?%>
+	  <%= show_field @user, :paypal_token_expires, @user.paypal.access_token_expires_at || "missing expiration" %>
 	<% end %>
       <% end %>
       <%= show_navigation @user %>

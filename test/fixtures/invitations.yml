@@ -5,11 +5,9 @@ one:
   email: MyString
   msg_count: 1
   key: MyString
-  signup_at: 2015-01-25 18:52:49
 
 two:
   user_id: 1
   email: MyString
   msg_count: 1
   key: MyString
-  signup_at: 2015-01-25 18:52:49

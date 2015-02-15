@@ -25,3 +25,13 @@ venmo_live_2:
   last_name: Venmo
   email: test2@betuabuck.com
 
+paypal_live_1:
+  first_name: One
+  last_name: Paypal
+  email: paypal_test_1@betuabuck.com
+
+paypal_live_2:
+  first_name: Two
+  last_name: Paypal
+  email: paypal_test_2@betuabuck.com
+

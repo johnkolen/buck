@@ -27,6 +27,8 @@ class Transfer < ActiveRecord::Base
   scope(:involving,
         ->(user){ where("user_id = ? OR recipient_id = ?", user.id, user.id) })
 
+  scope(:both_completed, -> { where(:state=>BOTH_COMPLETED) })
+
   def created_at_tz
     if created_at
       created_at.in_time_zone(user.time_zone)
@@ -68,6 +70,22 @@ class Transfer < ActiveRecord::Base
       recipient
     else
       user
+    end
+  end
+
+  def payment_source_user_id
+    if is_pay? || is_failed_bet? || is_pledge?
+      user_id
+    else
+      recipient_id
+    end
+  end
+
+  def payment_recipient_user_id
+    if is_pay? || is_failed_bet? || is_pledge?
+      recipient_id
+    else
+      user_id
     end
   end
 
@@ -121,14 +139,19 @@ class Transfer < ActiveRecord::Base
     @@state_str[v] = "User #{k.to_s.sub('_',' ').capitalize}"
     @@state_str[v << RECIPIENT_SHIFT] =
       "Recipient #{k.to_s.sub('_',' ').capitalize}"
+    const_set("user_#{k}".upcase, v)
     define_method("user_#{k}!") do
       self.state = (self.state & ~USER_MASK) | v
       self
     end
+    const_set("recipient_#{k}".upcase,
+              v << RECIPIENT_SHIFT)
     define_method("recipient_#{k}!") do
       self.state = (self.state & ~RECIPIENT_MASK) | (v << RECIPIENT_SHIFT)
       self
     end
+    const_set("both_#{k}".upcase,
+              v | (v << RECIPIENT_SHIFT))
     define_method("user_#{k}?") do
       (self.state & USER_MASK) == v
     end
