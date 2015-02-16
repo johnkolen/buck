@@ -1,0 +1,31 @@
+@import "scss/globals.scss";
+$footer-height: 90px;
+.footer-push {
+   height: $footer-height;
+}
+.non-footer {
+    min-height: 100%;
+    margin: 0 auto -1*$footer-height;
+}
+footer {
+    width: 100%;
+    background-color: $color-first;
+    color: white;
+    height: $footer-height;
+    a, a:visited, a:hover, a:focus  {
+	color: white;
+	background-color: $color-first;
+    }
+    div {
+	text-align: center;
+    }
+    ul {
+	margin-top: 20px;
+	li {
+	    display: inline;
+	    list-style-type: none;
+	    padding-right: 20px;
+	    width: 80px;
+	}
+    }
+}

@@ -33,6 +33,9 @@ Rails.application.routes.draw do
   post 'coming_soon'=>'static_pages#coming_soon'
 
   get 'toc'=>'static_pages#toc'
+  get 'tos'=>'static_pages#tos'
+  get 'faq'=>'static_pages#faq'
+  get 'privacy'=>'static_pages#privacy'
   get 'about'=>'static_pages#about'
   get 'admin'=>'static_pages#admin'
   get 'venmo_declined'=>"static_pages#venmo_declined"
@@ -62,6 +65,7 @@ Rails.application.routes.draw do
       patch 'update_password'
       get 'change_password'
       get 'friends'
+      get 'close_account'
     end
     collection do
       get 'validate'

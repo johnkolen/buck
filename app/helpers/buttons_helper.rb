@@ -221,7 +221,9 @@ module ButtonsHelper
             :class=>"btn-venmo btn")
   end
   def paypal_button user
-    link_to("PayPal",
+    img = image_tag("https://www.paypalobjects.com" +
+                    "/webstatic/en_US/btn/btn_pponly_142x27.png")
+    link_to(img,
             Payment::PayPal.authorize_url(user, dashboard_user_path(user)),
             :class=>"btn-venmo btn")
   end
@@ -245,5 +247,11 @@ module ButtonsHelper
     urls = Payment::PayPal.approval_urls @current_user.payments_for_approval
     img = image_tag "https://www.paypalobjects.com/en_US/i/btn/x-click-but6.gif"
     link_to img, urls.first
+  end
+
+  def cancel_profile_button
+    button_to("Cancel Edit",
+              user_path(@current_user),
+              :class=>"btn btn-default btn-info center-block")
   end
 end

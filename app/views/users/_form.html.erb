@@ -16,5 +16,28 @@
       </ul>
       </div>
     <% end %>
+    <% if params[:action] == "new" || params[:action] == "create"%>
+      <div class="signup-agreement">
+	<p>By clicking the "Sign Up!" button below:</p>
+	<ul>
+	  <li>
+	    you affirm that you are at least 18 years old and
+	    reside in the United States,
+	  </li>
+	  <li>
+	    you agree to the site's <%=link_to "Terms of Service", tos_path%>,
+	  </li>
+	  <li>
+	    and you have read the <%=link_to "Privacy Notice", privacy_path%>.
+	</ul>
+      </div>
+      <% elsif params[:action] == "edit" || params[:action] == "update"%>
+      <div class="close-account-link"><%=link_to "Close Your Account",
+      close_account_user_path(@current_user) %>
+      </div>
+      <div class=row>
+	<%=cancel_profile_button%>
+      </div>
+    <% end %>
   <% end %>
 <% end %>

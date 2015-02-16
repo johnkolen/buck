@@ -1,0 +1,20 @@
+@import "scss/globals.scss";
+.legal {
+    .question {
+	font-weight: bold;
+	color: $color-first;
+    }
+}
+.faq {
+    li {
+	list-style-type: none;
+	font-weight: bold;
+	font-size: 14pt;
+	margin-top: 12pt;
+	color: $color-first;
+	p {
+	    font-weight: normal;
+	    color: black;
+	}
+    }
+}
