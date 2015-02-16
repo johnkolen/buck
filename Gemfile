@@ -8,10 +8,11 @@ gem 'rails', '4.1.6'
 if ENV['RDS_DB_NAME']
   # Use mysql2 as the database for Active Record
   gem 'mysql2'
-else
+elsif ENV['HEROKU_POSTGRESQL_BLACK_URL']
   # Use postgresql as the database for Active Record
   gem 'pg', :group=>:staging
-  gem 'mysql2', :group=>[:development, :test]
+else
+  gem 'mysql2'
 end
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
