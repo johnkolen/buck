@@ -250,7 +250,7 @@ module ButtonsHelper
   end
 
   def cancel_profile_button
-    button_to("Cancel Edit",
+    link_to("Cancel Edit",
               user_path(@current_user),
               :class=>"btn btn-default btn-info center-block")
   end

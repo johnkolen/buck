@@ -9,24 +9,31 @@ class Payment::PayPal < Payment::Payment
     "PayPal"
   end
 
-  if Rails.env == "production"
-  else
-  end
-
   @@use_sandbox = false
   def self.sandbox= value
     @@use_sandbox = (value == true)
   end
 
+  if Rails.env == "production"
+    sandbox = true
+  else
+    sandbox = true
+  end
+
   HOST = "paypal.com"
+
   def self.url path
     host = HOST
     host = "sandbox.#{HOST}" if @@use_sandbox
     "https://#{host}/#{path}"
   end
 
+  REDIRECT_URL = {
+    "staging"=>"http://staging.betuabuck.com/callback/paypal",
+    "production"=>"https://www.betuabuck.com/callback/paypal"
+  }
   def self.redirect_url
-    "https://betuabuck.ngrok.com/callback/paypal"
+    REDIRECT_URL[Rails.env] || "https://betuabuck.ngrok.com/callback/paypal"
   end
 
   def self.resource path
