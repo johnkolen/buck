@@ -1,9 +1,6 @@
 test: &default
 
   # Credentials for REST APIs
-  client_id: AdJY6QNLjeuA22BqNlWF6WHQl06aLH163Ihw3l2fuLvHYNYuGTtQ1FBKsGUMigJc02XXEPqgQyA5hhFL
-  client_secret: ELrl9JZTOwLdzmq7iJkZ2Bz0LdMzuCAGwcKnR_vL5Yee8sRTyruXn-KzEjGMeG0HC1rZKcBky5GQBv88
-
   client_id: ARreJhCb_WnH0nsiD9rj5L4YDZ4VL6LMGtsw4uE90dKTuWRTtlyRLWMNbOHz
   client_secret: EFHnVBCo_WLG3FbqSkkjQs762Amre6hsGVmMSK9Zl4Hw7yxJlKIVXS-4bffk
 
@@ -32,3 +29,8 @@ development:
 production:
   <<: *default
   # mode: live
+  client_id: AR41H1NAVLEzrdTy7O9PiVbIBwKqVorerBwVfKKH70V9fCEIuX_0jkXIa7A_qxbxZn0mtQg_C8BORdRz
+  secret: ENtGyEq5PuWFqcd1ouJKSCLfgzCKTLqYCZ-BFtjenw7d0PrLl4_DWviy7vp2ucr5hhdh1o_eVQzMFHX_
+  username: beta_test_api1.betuabuck.com
+  password: DBZZSMXPUC6NX7D6
+  signature: AFcWxV21C7fd0v3bYYYRCpSSRl31AwGtTEKldsSTXxyZoapr3K.jGLB3

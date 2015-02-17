@@ -173,7 +173,7 @@ class UsersController < ApplicationController
         redirect_to dashboard_user_path(@user)
       end
     else
-      redirect_to sessions_new_path
+      redirect_to login_path
     end
   end
 

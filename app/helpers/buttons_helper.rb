@@ -225,7 +225,7 @@ module ButtonsHelper
                     "/webstatic/en_US/btn/btn_pponly_142x27.png")
     link_to(img,
             Payment::PayPal.authorize_url(user, dashboard_user_path(user)),
-            :class=>"btn-venmo btn")
+            :class=>"btn")
   end
   def modal_button target, msg
     content_tag(:button,
