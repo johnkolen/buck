@@ -1,15 +1,3 @@
-buck-dev: &buck-dev
-  access_key_id: AKIAIIJS663TYIDYZA2A
-  secret_access_key: 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
-
-buck-prod: &buck-prod
-  access_key_id: AKIAJLIKINOVXLMRIPFA
-  secret_access_key: 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
-
-john: &john
-  access_key_id: AKIAJJZRRMNCRPNYD3HQ
-  secret_access_key: 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
-
 development: *john
 
 test: *john
