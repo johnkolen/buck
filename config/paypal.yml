@@ -1,17 +1,11 @@
 test: &default
 
   # Credentials for REST APIs
-  client_id: ARreJhCb_WnH0nsiD9rj5L4YDZ4VL6LMGtsw4uE90dKTuWRTtlyRLWMNbOHz
-  client_secret: EFHnVBCo_WLG3FbqSkkjQs762Amre6hsGVmMSK9Zl4Hw7yxJlKIVXS-4bffk
 
   # Mode can be 'live' or 'sandbox'
   mode: sandbox
 
   # Credentials for Classic APIs
-  app_id: APP-80W284485P519543T
-  username: jb-us-seller_api1.paypal.com
-  password: WX4WTU3S8MY44S7F
-  signature: AFcWxV21C7fd0v3bYYYRCpSSRl31A7yDhhsPUU2XhtMoZXsWHFxu-RWy
   ## With Certificate
   #cert_path: "config/ca_cert.pem"
   sandbox_email_address: Platform.sdk.seller@gmail.com
@@ -29,8 +23,3 @@ development:
 production:
   <<: *default
   # mode: live
-  client_id: AR41H1NAVLEzrdTy7O9PiVbIBwKqVorerBwVfKKH70V9fCEIuX_0jkXIa7A_qxbxZn0mtQg_C8BORdRz
-  secret: ENtGyEq5PuWFqcd1ouJKSCLfgzCKTLqYCZ-BFtjenw7d0PrLl4_DWviy7vp2ucr5hhdh1o_eVQzMFHX_
-  username: beta_test_api1.betuabuck.com
-  password: DBZZSMXPUC6NX7D6
-  signature: AFcWxV21C7fd0v3bYYYRCpSSRl31AwGtTEKldsSTXxyZoapr3K.jGLB3
